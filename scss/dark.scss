@@ -3,7 +3,49 @@
    Dark mode. Active only when lib.php adds the lsudark body class,
    which happens when the user profile field darkmode is set.
    Compiled after post.scss so equal-importance rules here win the cascade.
+
+   Every text/background pairing below is verified against WCAG 2.x AAA
+   (7:1 normal text, 4.5:1 large text). Ratios are noted next to each
+   palette value. If you change a value, re-check it before shipping.
+
+   This file deliberately avoids SCSS color functions, lists, and loops
+   so it compiles on every scssphp version Moodle ships.
    ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   PALETTE — AAA verified.
+   These use !default so a value already defined upstream wins. If your
+   upstream palette differs, delete the old definitions and let these win,
+   otherwise the AAA guarantees below no longer hold. All values must be
+   literal colors, never CSS custom properties.
+
+   Contrast ratios against $dark-surface (#181028) / $dark-raised (#221636):
+     $dark-text     #e8e3f2  ->  14.6 : 1  /  13.5 : 1
+     $dark-heading  #f5f2fa  ->  15.9 : 1  /  14.7 : 1
+     $dark-muted    #b3a9c9  ->   8.2 : 1  /   7.6 : 1
+     $dark-link     #c0a6f0  ->   8.7 : 1  /   8.0 : 1
+     $brand-gold    #fdd023  ->  12.4 : 1  /  11.5 : 1
+     $dark-success  #8ee6a1  ->  12.2 : 1  /  11.3 : 1
+     $dark-danger   #ffadad  ->  10.3 : 1  /   9.5 : 1
+     $dark-warning  #ffd166  ->  12.7 : 1  /  11.7 : 1
+   -------------------------------------------------------------------------- */
+
+$dark-bg: #100a1c !default;
+$dark-surface: #181028 !default;
+$dark-raised: #221636 !default;
+$dark-tint: rgba(192, 166, 240, 0.10) !default;
+$dark-text: #e8e3f2 !default;
+$dark-heading: #f5f2fa !default;
+$dark-muted: #b3a9c9 !default;
+$dark-link: #c0a6f0 !default;
+$dark-link-hover: #dccdf8 !default;
+$dark-line-soft: rgba(192, 166, 240, 0.16) !default;
+$dark-line-strong: rgba(192, 166, 240, 0.34) !default;
+$brand-gold: #fdd023 !default;
+$brand-gold-bright: #fede5c !default;
+$dark-success: #8ee6a1 !default;
+$dark-danger: #ffadad !default;
+$dark-warning: #ffd166 !default;
 
 /* --------------------------------------------------------------------------
    GLOBAL SURFACES
@@ -15,7 +57,9 @@ body.lsudark,
 .lsudark #page.drawers,
 .lsudark #page.drawers div[role="main"],
 .lsudark #page-content,
-.lsudark #region-main-box {
+.lsudark #region-main-box,
+.lsudark #topofscroll,
+.lsudark .main-inner {
     background: $dark-bg;
     color: $dark-text;
 }
@@ -24,6 +68,8 @@ body.lsudark,
 .lsudark h2,
 .lsudark h3,
 .lsudark h4,
+.lsudark h5,
+.lsudark h6,
 .lsudark .page-context-header .page-header-headings h1 {
     color: $dark-heading;
 }
@@ -37,6 +83,18 @@ body.lsudark,
         color: $dark-link-hover;
         text-decoration-color: $brand-gold;
     }
+}
+
+/* Keyboard focus must be visible everywhere, AAA 2.4.7/2.4.11. */
+.lsudark a:focus-visible,
+.lsudark button:focus-visible,
+.lsudark .btn:focus-visible,
+.lsudark input:focus-visible,
+.lsudark select:focus-visible,
+.lsudark textarea:focus-visible,
+.lsudark [tabindex]:focus-visible {
+    outline: 2px solid $brand-gold !important;
+    outline-offset: 2px;
 }
 
 .lsudark ::selection {
@@ -54,12 +112,84 @@ body.lsudark,
 }
 
 /* --------------------------------------------------------------------------
+   BOOTSTRAP UTILITY OVERRIDES
+   Moodle sprinkles bg-white, bg-light, and text-dark across templates.
+   Killing them here is what keeps stray white boxes from surviving.
+   -------------------------------------------------------------------------- */
+
+.lsudark .bg-white,
+.lsudark .bg-light,
+.lsudark .bg-gray,
+.lsudark .bg-secondary {
+    background-color: $dark-surface !important;
+}
+
+.lsudark .text-dark,
+.lsudark .text-body,
+.lsudark .text-black {
+    color: $dark-text !important;
+}
+
+.lsudark .text-muted,
+.lsudark .dimmed_text,
+.lsudark small,
+.lsudark .small {
+    color: $dark-muted !important;
+}
+
+.lsudark .text-primary {
+    color: $dark-link !important;
+}
+
+.lsudark .text-success {
+    color: $dark-success !important;
+}
+
+.lsudark .text-danger {
+    color: $dark-danger !important;
+}
+
+.lsudark .text-warning {
+    color: $dark-warning !important;
+}
+
+.lsudark .border,
+.lsudark .border-top,
+.lsudark .border-bottom,
+.lsudark .border-left,
+.lsudark .border-right {
+    border-color: $dark-line-soft !important;
+}
+
+.lsudark hr {
+    border-top-color: $dark-line-soft;
+}
+
+.lsudark .icon {
+    color: inherit;
+}
+
+/* --------------------------------------------------------------------------
    HEADER — deeper purple so the gold keyline still reads.
    -------------------------------------------------------------------------- */
 
 .lsudark .navbar,
 .lsudark .navbar.fixed-top {
     background: linear-gradient(180deg, #2a1149 0%, #1e0c36 100%) !important;
+}
+
+/* White on #1e0c36 is 16.5 : 1. */
+.lsudark .navbar .nav-link,
+.lsudark .navbar .navbar-brand,
+.lsudark .navbar .login a,
+.lsudark .navbar .usermenu .login a,
+.lsudark .navbar .editmode-switch-form label {
+    color: #f5f2fa !important;
+}
+
+.lsudark .navbar .nav-link:hover,
+.lsudark .navbar .nav-link:focus {
+    color: $brand-gold !important;
 }
 
 .lsudark .navbar .dropdown-menu {
@@ -79,14 +209,22 @@ body.lsudark,
     background-color: $dark-tint !important;
 }
 
+.lsudark .primary-navigation .nav-link.active {
+    border-bottom-color: $brand-gold;
+}
+
 /* --------------------------------------------------------------------------
    DRAWERS & COURSE INDEX
    -------------------------------------------------------------------------- */
 
+.lsudark .drawer,
 .lsudark .drawer.drawer-left.show,
-.lsudark .drawer.drawer-right.show {
+.lsudark .drawer.drawer-right.show,
+.lsudark .drawercontent,
+.lsudark .drawerheader {
     background-color: $dark-surface;
     border-color: $dark-line-soft;
+    color: $dark-text;
 }
 
 .lsudark .drawer.drawer-left .drawerheader .drawertoggle,
@@ -106,10 +244,7 @@ body.lsudark,
     border-bottom-color: $dark-line-soft;
 }
 
-.lsudark .courseindex .courseindex-section-title .courseindex-link {
-    color: $dark-link;
-}
-
+.lsudark .courseindex .courseindex-section-title .courseindex-link,
 .lsudark .courseindex .courseindex-section-title .courseindex-chevron,
 .lsudark .courseindex .courseindex-section-title .icons-collapse-expand {
     color: $dark-link;
@@ -130,7 +265,7 @@ body.lsudark,
 
 .lsudark .courseindex .courseindex-item.pageitem,
 .lsudark .courseindex .courseindex-item.active {
-    background: rgba(192, 166, 240, 0.12) !important;
+    background: rgba(192, 166, 240, 0.14) !important;
 
     .courseindex-link {
         color: $dark-link !important;
@@ -152,9 +287,17 @@ body.lsudark,
 
 .lsudark .card,
 .lsudark .dashboard-card,
-.lsudark .block.card {
+.lsudark .block.card,
+.lsudark .list-group-item {
     background: $dark-surface !important;
     border-color: $dark-line-soft !important;
+    color: $dark-text;
+}
+
+.lsudark .card-header,
+.lsudark .card-footer {
+    background: rgba(192, 166, 240, 0.05);
+    border-color: $dark-line-soft;
 }
 
 .lsudark .block .header,
@@ -172,6 +315,24 @@ body.lsudark,
 .lsudark.path-course-view #region-main {
     background: transparent !important;
     border: none !important;
+}
+
+.lsudark .activity-header {
+    background: $dark-surface;
+    border-color: $dark-line-soft;
+}
+
+.lsudark #page-footer,
+.lsudark .stickyfooter {
+    background: $dark-raised;
+    border-top: 1px solid $dark-line-soft;
+    color: $dark-text;
+}
+
+.lsudark .footer-popover,
+.lsudark .footer-content-popover {
+    background: $dark-raised;
+    color: $dark-text;
 }
 
 /* --------------------------------------------------------------------------
@@ -198,7 +359,7 @@ body.lsudark,
 
 .lsudark .course-content .section .summary,
 .lsudark .course-content .course-section .summarytext {
-    color: $dark-muted;
+    color: $dark-text;
 }
 
 .lsudark .course-content li.activity + li.activity > .activity-item,
@@ -246,10 +407,91 @@ body.lsudark,
 }
 
 /* --------------------------------------------------------------------------
-   NAVIGATION TABS, BUTTONS, FORMS
+   BUTTONS
+   Gold primary with deep-purple text is 11.6 : 1.
    -------------------------------------------------------------------------- */
 
-.lsudark .secondary-navigation {
+.lsudark .btn-primary {
+    background: $brand-gold;
+    border-color: $brand-gold;
+    color: #1e0c36;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background: $brand-gold-bright;
+        border-color: $brand-gold-bright;
+        color: #1e0c36;
+    }
+}
+
+.lsudark .btn-secondary,
+.lsudark .btn-light {
+    background: $dark-raised;
+    border-color: $dark-line-strong;
+    color: $dark-text;
+
+    &:hover,
+    &:focus {
+        background: $dark-tint;
+        color: $dark-heading;
+    }
+}
+
+.lsudark .btn-outline-primary,
+.lsudark .btn-outline-secondary,
+.lsudark .btn-link {
+    color: $dark-link;
+    border-color: $dark-line-strong;
+
+    &:hover,
+    &:focus {
+        background: $dark-link;
+        border-color: $dark-link;
+        color: $dark-bg;
+    }
+}
+
+.lsudark .btn-success {
+    background: transparent;
+    border-color: $dark-success;
+    color: $dark-success;
+}
+
+.lsudark .btn-danger {
+    background: transparent;
+    border-color: $dark-danger;
+    color: $dark-danger;
+}
+
+/* Disabled controls are exempt from contrast minimums but should still read as present. */
+.lsudark .btn:disabled,
+.lsudark .btn.disabled {
+    background: $dark-raised;
+    border-color: $dark-line-soft;
+    color: $dark-muted;
+}
+
+.lsudark .close,
+.lsudark .btn-close {
+    color: $dark-text;
+    text-shadow: none;
+    opacity: 0.8;
+
+    &:hover {
+        color: $dark-heading;
+        opacity: 1;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION TABS, PAGINATION, BREADCRUMB
+   -------------------------------------------------------------------------- */
+
+.lsudark .secondary-navigation,
+.lsudark .secondary-navigation .navigation,
+.lsudark .secondary-navigation .nav-tabs {
+    background: transparent;
     border-bottom-color: $dark-line-soft;
 }
 
@@ -264,24 +506,67 @@ body.lsudark,
 
     &.active {
         color: $dark-link;
+        background: transparent;
         border-bottom-color: $brand-gold;
     }
 }
 
-.lsudark .btn-outline-primary {
+.lsudark .pagination .page-link {
+    background: $dark-surface;
+    border-color: $dark-line-soft;
     color: $dark-link;
-    border-color: $dark-line-strong;
 
     &:hover,
     &:focus {
-        background: $dark-link;
-        border-color: $dark-link;
-        color: $dark-bg;
+        background: $dark-tint;
+        color: $dark-link-hover;
     }
 }
 
+.lsudark .pagination .page-item.active .page-link {
+    background: $brand-gold;
+    border-color: $brand-gold;
+    color: #1e0c36;
+}
+
+.lsudark .pagination .page-item.disabled .page-link {
+    background: $dark-surface;
+    color: $dark-muted;
+}
+
+.lsudark .breadcrumb {
+    background: transparent;
+}
+
+.lsudark .breadcrumb .breadcrumb-item a {
+    color: $dark-muted;
+
+    &:hover {
+        color: $dark-link;
+    }
+}
+
+.lsudark .breadcrumb .breadcrumb-item.active,
+.lsudark .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    color: $dark-muted;
+}
+
+/* --------------------------------------------------------------------------
+   FORMS
+   -------------------------------------------------------------------------- */
+
 .lsudark .form-control,
-.lsudark .custom-select {
+.lsudark .custom-select,
+.lsudark select,
+.lsudark textarea,
+.lsudark input[type="text"],
+.lsudark input[type="email"],
+.lsudark input[type="password"],
+.lsudark input[type="number"],
+.lsudark input[type="search"],
+.lsudark input[type="url"],
+.lsudark input[type="date"],
+.lsudark input[type="datetime-local"] {
     background: $dark-raised;
     border-color: $dark-line-strong;
     color: $dark-text;
@@ -298,9 +583,71 @@ body.lsudark,
     }
 }
 
+/* Native checkboxes, radios, and range inputs pick up the lilac. */
+.lsudark input[type="checkbox"],
+.lsudark input[type="radio"],
+.lsudark input[type="range"],
+.lsudark progress {
+    accent-color: $dark-link;
+}
+
+.lsudark .custom-control-label::before {
+    background: $dark-raised;
+    border-color: $dark-line-strong;
+}
+
+.lsudark .custom-control-input:checked ~ .custom-control-label::before {
+    background: $dark-link;
+    border-color: $dark-link;
+}
+
 .lsudark label,
-.lsudark .col-form-label {
+.lsudark .col-form-label,
+.lsudark legend,
+.lsudark .fitemtitle {
     color: $dark-heading;
+}
+
+.lsudark .form-text,
+.lsudark .form-description,
+.lsudark .fdescription {
+    color: $dark-muted;
+}
+
+.lsudark .invalid-feedback,
+.lsudark .error,
+.lsudark .form-control.is-invalid {
+    color: $dark-danger;
+    border-color: $dark-danger;
+}
+
+.lsudark .valid-feedback,
+.lsudark .form-control.is-valid {
+    color: $dark-success;
+    border-color: $dark-success;
+}
+
+.lsudark .input-group-text {
+    background: $dark-raised;
+    border-color: $dark-line-strong;
+    color: $dark-muted;
+}
+
+.lsudark fieldset,
+.lsudark .fcontainer,
+.lsudark .mform .fitem {
+    border-color: $dark-line-soft;
+}
+
+/* Filepicker and file manager. */
+.lsudark .filemanager .fp-content,
+.lsudark .filemanager-container,
+.lsudark .file-picker .fp-content,
+.lsudark .fp-navbar,
+.lsudark .filepicker-filelist {
+    background: $dark-raised !important;
+    border-color: $dark-line-soft !important;
+    color: $dark-text;
 }
 
 /* --------------------------------------------------------------------------
@@ -319,6 +666,13 @@ body.lsudark,
 .lsudark .table td {
     border-color: $dark-line-soft !important;
     color: $dark-text;
+    background: transparent;
+}
+
+.lsudark .generaltable thead th,
+.lsudark .table thead th {
+    background: rgba(192, 166, 240, 0.07);
+    color: $dark-heading;
 }
 
 .lsudark .generaltable tbody tr:nth-of-type(even) {
@@ -330,34 +684,79 @@ body.lsudark,
     background: $dark-tint;
 }
 
-.lsudark .breadcrumb .breadcrumb-item a {
-    color: $dark-muted;
-
-    &:hover {
-        color: $dark-link;
-    }
-}
-
-.lsudark .breadcrumb .breadcrumb-item.active {
-    color: $dark-link;
-}
-
 .lsudark .progress {
     background: rgba(192, 166, 240, 0.15);
 }
 
-.lsudark .alert-info {
+.lsudark .progress-bar {
+    background: $dark-link;
+    color: $dark-bg;
+}
+
+/* --------------------------------------------------------------------------
+   ALERTS, BADGES, TAGS
+   -------------------------------------------------------------------------- */
+
+.lsudark .alert {
+    color: $dark-text;
+}
+
+.lsudark .alert-info,
+.lsudark .alert-primary {
     background: rgba(192, 166, 240, 0.08);
     border-color: rgba(192, 166, 240, 0.20);
     border-left-color: $dark-link;
     color: $dark-text;
+
+    a {
+        color: $dark-link;
+    }
+}
+
+.lsudark .alert-success {
+    background: rgba(142, 230, 161, 0.08);
+    border-color: rgba(142, 230, 161, 0.25);
+    color: $dark-success;
+}
+
+.lsudark .alert-warning {
+    background: rgba(255, 209, 102, 0.08);
+    border-color: rgba(255, 209, 102, 0.25);
+    color: $dark-warning;
+}
+
+.lsudark .alert-danger {
+    background: rgba(255, 173, 173, 0.08);
+    border-color: rgba(255, 173, 173, 0.25);
+    color: $dark-danger;
 }
 
 .lsudark .tag,
-.lsudark .badge-info {
+.lsudark .badge,
+.lsudark .badge-info,
+.lsudark .badge-secondary {
     background: rgba(192, 166, 240, 0.14);
     color: $dark-link;
 }
+
+.lsudark .badge-success {
+    background: rgba(142, 230, 161, 0.14);
+    color: $dark-success;
+}
+
+.lsudark .badge-danger {
+    background: rgba(255, 173, 173, 0.14);
+    color: $dark-danger;
+}
+
+.lsudark .badge-warning {
+    background: rgba(255, 209, 102, 0.14);
+    color: $dark-warning;
+}
+
+/* --------------------------------------------------------------------------
+   DROPDOWNS, MODALS, POPOVERS, TOASTS
+   -------------------------------------------------------------------------- */
 
 .lsudark .dropdown-menu {
     background: $dark-raised;
@@ -372,12 +771,382 @@ body.lsudark,
             color: #ffffff;
         }
     }
+
+    .dropdown-divider {
+        border-top-color: $dark-line-soft;
+    }
 }
 
 .lsudark .modal-content {
     background: $dark-surface;
     color: $dark-text;
     border-color: $dark-line-soft;
+}
+
+.lsudark .modal-header,
+.lsudark .modal-footer {
+    border-color: $dark-line-soft;
+}
+
+.lsudark .popover {
+    background: $dark-raised;
+    border-color: $dark-line-strong;
+}
+
+.lsudark .popover-header {
+    background: rgba(192, 166, 240, 0.07);
+    border-bottom-color: $dark-line-soft;
+    color: $dark-heading;
+}
+
+.lsudark .popover-body {
+    color: $dark-text;
+}
+
+.lsudark .toast {
+    background: $dark-raised;
+    border-color: $dark-line-soft;
+    color: $dark-text;
+}
+
+.lsudark .toast-header {
+    background: rgba(192, 166, 240, 0.07);
+    color: $dark-heading;
+}
+
+/* Notification popover region in the navbar. */
+.lsudark .popover-region-container {
+    background: $dark-raised;
+    border-color: $dark-line-soft;
+}
+
+.lsudark .popover-region-container .content-item-container {
+    color: $dark-text;
+    border-bottom-color: $dark-line-soft;
+
+    &:hover {
+        background: $dark-tint;
+    }
+
+    &.unread {
+        background: rgba(192, 166, 240, 0.08);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   MESSAGING DRAWER
+   -------------------------------------------------------------------------- */
+
+.lsudark .message-app {
+    background: $dark-surface;
+    color: $dark-text;
+}
+
+.lsudark .message-app .header-container,
+.lsudark .message-app .footer-container,
+.lsudark .message-app .body-container {
+    background: $dark-surface;
+    border-color: $dark-line-soft;
+}
+
+.lsudark .message-app .message {
+    background: $dark-raised;
+    color: $dark-text;
+}
+
+.lsudark .message-app .message.send {
+    background: rgba(192, 166, 240, 0.16);
+    color: $dark-heading;
+}
+
+/* --------------------------------------------------------------------------
+   ACTIVITY MODULES — forum, quiz, assignment, glossary, book.
+   -------------------------------------------------------------------------- */
+
+.lsudark .forumpost,
+.lsudark .forum-post-container {
+    background: $dark-surface !important;
+    border-color: $dark-line-soft !important;
+    color: $dark-text;
+}
+
+.lsudark .forumpost .header,
+.lsudark .forumpost .topic {
+    background: rgba(192, 166, 240, 0.05);
+    border-bottom-color: $dark-line-soft;
+}
+
+.lsudark .forumpost .author,
+.lsudark .forumpost time,
+.lsudark .forumpost .post-actions a {
+    color: $dark-muted;
+}
+
+.lsudark .que {
+    background: $dark-surface;
+    border-color: $dark-line-soft;
+    color: $dark-text;
+}
+
+.lsudark .que .info {
+    background: $dark-raised;
+    border-color: $dark-line-soft;
+    color: $dark-text;
+}
+
+.lsudark .que .formulation {
+    background: transparent !important;
+    color: $dark-text !important;
+    border-color: $dark-line-soft;
+}
+
+.lsudark .que .rightanswer,
+.lsudark .que .correctness.correct {
+    background: rgba(142, 230, 161, 0.10);
+    color: $dark-success;
+}
+
+.lsudark .que .incorrect,
+.lsudark .que .correctness.incorrect {
+    background: rgba(255, 173, 173, 0.10);
+    color: $dark-danger;
+}
+
+.lsudark .que .feedback,
+.lsudark .que .generalfeedback {
+    background: rgba(192, 166, 240, 0.06);
+    color: $dark-text;
+}
+
+.lsudark .qnbutton {
+    background: $dark-raised !important;
+    border-color: $dark-line-strong !important;
+    color: $dark-link !important;
+}
+
+.lsudark .path-mod-assign .submissionstatustable .cell,
+.lsudark .path-mod-assign .feedbacktable .cell {
+    background: transparent;
+    color: $dark-text;
+}
+
+.lsudark .submissionstatussubmitted {
+    background: rgba(142, 230, 161, 0.10) !important;
+    color: $dark-success !important;
+}
+
+.lsudark .glossarypost,
+.lsudark .book_content {
+    background: $dark-surface;
+    border-color: $dark-line-soft;
+    color: $dark-text;
+}
+
+/* --------------------------------------------------------------------------
+   GRADEBOOK
+   -------------------------------------------------------------------------- */
+
+.lsudark .path-grade-report-grader .gradeparent table,
+.sudark .gradereport-grader-table th,
+.lsudark .gradereport-grader-table td,
+.lsudark .user-grades .cell,
+.lsudark .user-grades th,
+.lsudark .user-grades td {
+    background: $dark-surface !important;
+    border-color: $dark-line-soft !important;
+    color: $dark-text !important;
+}
+
+.lsudark .gradereport-grader-table .heading,
+.lsudark .user-grades .heading {
+    background: $dark-raised !important;
+    color: $dark-heading !important;
+}
+
+.lsudark .grade-report-user .user-grade td {
+    background: transparent !important;
+    color: $dark-text;
+}
+
+/* --------------------------------------------------------------------------
+   CALENDAR
+   -------------------------------------------------------------------------- */
+
+.lsudark .calendarwrapper,
+.lsudark .calendarmonth {
+    background: $dark-surface;
+    color: $dark-text;
+}
+
+.lsudark .calendarmonth th,
+.lsudark .calendarmonth td {
+    background: $dark-surface;
+    border-color: $dark-line-soft !important;
+    color: $dark-text;
+}
+
+.lsudark .calendarmonth td.dayblank {
+    background: $dark-bg;
+}
+
+.lsudark .calendarmonth td.today .day-number-circle {
+    background: $brand-gold;
+    color: #1e0c36;
+}
+
+.lsudark .calendar_event_course,
+.lsudark .calendar_event_global,
+.lsudark .calendar_event_group,
+.lsudark .calendar_event_user {
+    color: #1e0c36;
+}
+
+.lsudark .calendar-event-panel,
+.lsudark .event .card {
+    background: $dark-raised;
+    color: $dark-text;
+}
+
+/* --------------------------------------------------------------------------
+   USER-GENERATED CONTENT
+   Teachers and students paste content with hard-coded inline colors and
+   backgrounds that were chosen on a white page. To guarantee AAA, the
+   inline values are neutralized inside known UGC containers. Authored
+   color choices are intentionally lost in dark mode; that is the
+   trade-off for guaranteed contrast.
+   -------------------------------------------------------------------------- */
+
+.lsudark .no-overflow,
+.lsudark .summarytext,
+.lsudark .activity-description,
+.lsudark .description-inner,
+.lsudark .generalbox,
+.lsudark .forumpost .content,
+.lsudark .post-content-container,
+.lsudark .glossarypost .entry,
+.lsudark .book_content,
+.lsudark .blog_entry .content {
+    color: $dark-text;
+}
+
+.lsudark .no-overflow [style*="color"],
+.lsudark .summarytext [style*="color"],
+.lsudark .activity-description [style*="color"],
+.lsudark .description-inner [style*="color"],
+.lsudark .generalbox [style*="color"],
+.lsudark .forumpost .content [style*="color"],
+.lsudark .post-content-container [style*="color"],
+.lsudark .glossarypost .entry [style*="color"],
+.lsudark .book_content [style*="color"],
+.lsudark .blog_entry .content [style*="color"],
+.lsudark .que .formulation [style*="color"],
+.lsudark .que .generalfeedback [style*="color"] {
+    color: $dark-text !important;
+}
+
+.lsudark .no-overflow [style*="background"],
+.lsudark .summarytext [style*="background"],
+.lsudark .activity-description [style*="background"],
+.lsudark .description-inner [style*="background"],
+.lsudark .generalbox [style*="background"],
+.lsudark .forumpost .content [style*="background"],
+.lsudark .post-content-container [style*="background"],
+.lsudark .glossarypost .entry [style*="background"],
+.lsudark .book_content [style*="background"],
+.lsudark .blog_entry .content [style*="background"],
+.lsudark .que .formulation [style*="background"],
+.lsudark .que .generalfeedback [style*="background"] {
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+.lsudark .no-overflow font[color],
+.lsudark .summarytext font[color],
+.lsudark .forumpost .content font[color],
+.lsudark .book_content font[color],
+.lsudark .glossarypost .entry font[color] {
+    color: $dark-text !important;
+}
+
+.lsudark .no-overflow a,
+.lsudark .summarytext a,
+.lsudark .activity-description a,
+.lsudark .forumpost .content a,
+.lsudark .post-content-container a,
+.lsudark .glossarypost .entry a,
+.lsudark .book_content a,
+.lsudark .blog_entry .content a {
+    color: $dark-link !important;
+}
+
+.lsudark .no-overflow table,
+.lsudark .no-overflow th,
+.lsudark .no-verflow td,
+.lsudark .forumpost .content table,
+.lsudark .forumpost .content th,
+.lsudark .forumpost .content td,
+.lsudark .book_content table,
+.lsudark .book_content th,
+.lsudark .book_content td {
+    border-color: $dark-line-soft !important;
+    background-color: transparent !important;
+    color: $dark-text;
+}
+
+/* UGC building blocks that need their own dark treatment. */
+.lsudark .no-overflow blockquote,
+.lsudark blockquote {
+    background: rgba(192, 166, 240, 0.06);
+    border-left: 3px solid $dark-line-strong;
+    color: $dark-text;
+}
+
+.lsudark pre,
+.lsudark code,
+.lsudark kbd,
+.lsudark samp {
+    background: $dark-raised;
+    border: 1px solid $dark-line-soft;
+    color: $dark-warning;
+}
+
+.lsudark mark {
+    background: rgba(253, 208, 35, 0.25);
+    color: $dark-heading;
+}
+
+/* Full-white images glare on a dark page, soften them slightly. */
+.lsudark .no-overflow img,
+.lsudark .forumpost .content img {
+    filter: brightness(0.92);
+}
+
+/* --------------------------------------------------------------------------
+   TEXT EDITORS
+   Only the editor chrome can be styled from here. TinyMCE and Atto render
+   the writing surface inside an iframe, the in-iframe page must be themed
+   from the editor plugin settings (content_css), not from this file.
+   -------------------------------------------------------------------------- */
+
+.lsudark .editor_atto_toolbar,
+.lsudark .editor_atto_wrap,
+.lsudark .tox .tox-toolbar,
+.lsudark .tox .tox-toolbar__primary,
+.lsudark .tox .tox-menubar,
+.lsudark .tox .tox-statusbar,
+.lsudark .tox-tinymce {
+    background: $dark-raised !important;
+    border-color: $dark-line-strong !important;
+}
+
+.lsudark .editor_atto_toolbar button,
+.lsudark .tox .tox-tbtn,
+.lsudark .tox .tox-mbtn {
+    color: $dark-text !important;
+
+    svg {
+        fill: $dark-text !important;
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -394,4 +1163,9 @@ body.lsudark,
 .lsudark .login-container {
     background: $dark-surface;
     border-color: $dark-line-soft;
+    color: $dark-text;
+}
+
+.lsudark .login-divider {
+    border-top-color: $dark-line-soft;
 }

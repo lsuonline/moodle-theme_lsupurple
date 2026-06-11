@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2026061002;
+$plugin->version = 2026061003;
 $plugin->requires = 2024100700;
 $plugin->component = 'theme_lsupurple';
 $plugin->maturity = MATURITY_ALPHA;

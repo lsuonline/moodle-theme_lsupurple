@@ -96,6 +96,25 @@ body.lsudark,
     border-color: $dark-line-soft !important;
 }
 
+.lsudark .courseindex .courseindex-section {
+    background: rgba(192, 166, 240, 0.03);
+    border-color: $dark-line-soft;
+}
+
+.lsudark .courseindex .courseindex-section-title {
+    background: rgba(192, 166, 240, 0.06);
+    border-bottom-color: $dark-line-soft;
+}
+
+.lsudark .courseindex .courseindex-section-title .courseindex-link {
+    color: $dark-link;
+}
+
+.lsudark .courseindex .courseindex-section-title .courseindex-chevron,
+.lsudark .courseindex .courseindex-section-title .icons-collapse-expand {
+    color: $dark-link;
+}
+
 .lsudark .courseindex .courseindex-item {
     color: $dark-text;
 
@@ -118,8 +137,13 @@ body.lsudark,
     }
 }
 
-.lsudark .courseindex .courseindex-section-title .courseindex-link {
-    color: $dark-heading;
+.lsudark .courseindex .courseindex-section:has(.pageitem) {
+    background: $dark-raised;
+    border-color: $dark-line-strong;
+}
+
+.lsudark .courseindex .courseindex-section:not(:has(.pageitem)) .courseindex-section-title {
+    background: transparent;
 }
 
 /* --------------------------------------------------------------------------

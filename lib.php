@@ -73,7 +73,7 @@ function theme_lsupurple_get_extra_scss($theme) {
     global $CFG;
 
     $scss = file_get_contents($CFG->dirroot . '/theme/lsupurple/scss/post.scss');
-//    $scss .= file_get_contents($CFG->dirroot . '/theme/lsupurple/scss/dark.scss');
+    $scss .= file_get_contents($CFG->dirroot . '/theme/lsupurple/scss/dark.scss');
 
     $raw = get_config('theme_lsupurple', 'scss');
     if (!empty($raw)) {
@@ -111,5 +111,5 @@ function theme_lsupurple_wants_darkmode() {
     }
 
     $value = strtolower(trim((string) $USER->profile['darkmode']));
-    return $value;//in_array($value, ['1', 'true', 'yes'], true);
+    return in_array($value, ['1', 'true', 'yes'], true);
 }

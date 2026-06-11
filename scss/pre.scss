@@ -1,0 +1,74 @@
+/* ==========================================================================
+   LSU Purple — pre.scss
+   Design tokens, injected before Bootstrap and Boost compile.
+   No external imports here: Moodle's SCSS compiler cannot be trusted with
+   them, and one bad statement silently kills the entire stylesheet.
+   The Source Sans 3 font is loaded as a head link tag by hook_callbacks.php.
+   ========================================================================== */
+
+// Brand.
+$brand-primary:       #3a1867;
+$brand-primary-dark:  #2a1149;
+$brand-primary-deep:  #1e0c36;
+$brand-gold:          #FDD023;
+$brand-gold-dark:     #e3b400;
+
+// Ink scale.
+$ink-heading: #271742;
+$ink-body:    #332a40;
+$ink-muted:   #6f6880;
+
+// Surfaces.
+$body-bg:      #fbfafd;
+$surface:      #ffffff;
+$surface-tint: rgba(58, 24, 103, 0.04);
+
+// Lines.
+$line-soft:   rgba(58, 24, 103, 0.10);
+$line-strong: rgba(58, 24, 103, 0.22);
+
+// Shadows: resting, raised, floating.
+$shadow-rest:  0 1px 2px rgba(30, 12, 54, 0.05), 0 2px 8px rgba(58, 24, 103, 0.05);
+$shadow-raise: 0 2px 4px rgba(30, 12, 54, 0.06), 0 8px 20px rgba(58, 24, 103, 0.10);
+$shadow-float: 0 4px 8px rgba(30, 12, 54, 0.07), 0 16px 40px rgba(58, 24, 103, 0.14);
+
+// Radii.
+$radius-card:    14px;
+$radius-item:    10px;
+$radius-control: 8px;
+
+// Motion.
+$ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+
+
+/* --------------------------------------------------------------------------
+   BOOTSTRAP BRIDGE
+   Because this runs before Bootstrap, core components inherit the brand
+   natively instead of being overridden after the fact.
+   -------------------------------------------------------------------------- */
+
+$primary: $brand-primary;
+$link-color: $brand-primary;
+$link-hover-color: $brand-primary-dark;
+$border-radius: 8px;
+$border-radius-lg: 10px;
+$font-size-base: 0.9625rem;
+
+// Dark mode tokens. Applied when the body carries the lsudark class.
+$dark-bg:          #141020;
+$dark-surface:     #1d1729;
+$dark-raised:      #251d34;
+$dark-line-soft:   rgba(255, 255, 255, 0.08);
+$dark-line-strong: rgba(255, 255, 255, 0.18);
+$dark-heading:     #efeaf8;
+$dark-text:        #e6e1f0;
+$dark-muted:       #a59cb8;
+$dark-link:        #c0a6f0;
+$dark-link-hover:  #d6c5f6;
+$dark-tint:        rgba(192, 166, 240, 0.07);
+
+/* --------------------------------------------------------------------------
+   FONT BRIDGE
+   -------------------------------------------------------------------------- */
+
+$font-family-sans-serif: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

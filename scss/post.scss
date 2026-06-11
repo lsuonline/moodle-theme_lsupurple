@@ -1,0 +1,956 @@
+/* ==========================================================================
+   LSU Purple — post.scss
+   Visual overrides, appended after the parent Boost styles.
+   Tokens are defined in pre.scss and available here.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   FULL WIDTH LAYOUT
+   -------------------------------------------------------------------------- */
+
+.limitedwidth,
+.main-inner,
+#page.drawers .main-inner,
+#page-wrapper .main-inner,
+#region-main,
+#region-main-box,
+#page-content,
+.course-content,
+.course-content ul.topics,
+.course-content ul.weeks {
+    max-width: none !important;
+}
+
+.limitedwidth,
+.main-inner,
+#page.drawers .main-inner,
+#page-wrapper .main-inner {
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   GLOBAL
+   -------------------------------------------------------------------------- */
+
+body,
+#page,
+#page-wrapper,
+#page.drawers,
+#page.drawers div[role="main"],
+#page-content,
+#region-main-box {
+    background: $body-bg;
+    color: $ink-body;
+}
+
+body {
+    font-size: 0.9625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: $brand-primary;
+    text-decoration-color: rgba(58, 24, 103, 0.35);
+    text-underline-offset: 2px;
+
+    &:hover,
+    &:focus {
+        color: $brand-primary-dark;
+        text-decoration-color: $brand-gold-dark;
+    }
+}
+
+h1, h2, h3, h4,
+.page-context-header .page-header-headings h1 {
+    color: $ink-heading;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+}
+
+h1,
+.page-context-header .page-header-headings h1 {
+    color: $brand-primary;
+    font-size: 1.85rem;
+}
+
+hr,
+.course-content hr,
+.section hr {
+    display: none;
+}
+
+// Text selection in brand purple.
+::selection {
+    background: rgba(58, 24, 103, 0.85);
+    color: #ffffff;
+}
+
+// Purple-tinted scrollbar.
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(58, 24, 103, 0.22);
+    border: 3px solid $body-bg;
+    border-radius: 999px;
+
+    &:hover {
+        background: rgba(58, 24, 103, 0.40);
+    }
+}
+
+// Gold keyboard focus ring, site wide.
+:focus-visible {
+    outline: 2px solid $brand-gold-dark !important;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   HEADER — purple gradient with a gold keyline.
+   -------------------------------------------------------------------------- */
+
+.navbar,
+.navbar.fixed-top {
+    background: linear-gradient(180deg, $brand-primary 0%, $brand-primary-dark 100%) !important;
+    border-bottom: none !important;
+    box-shadow:
+        inset 0 -3px 0 $brand-gold,
+        0 2px 16px rgba(30, 12, 54, 0.25);
+}
+
+.navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    min-width: 180px;
+    color: #ffffff !important;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 160px;
+        height: 36px;
+        background-image: url("https://testrusso.lsu.edu/rrusso/pix/lsu/lsu_ffffff.svg");
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: contain;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+    }
+
+    &:hover,
+    &:focus {
+        color: #ffffff !important;
+    }
+}
+
+.navbar .navbar-brand .site-name {
+    display: none;
+}
+
+.navbar .nav-link,
+.navbar .dropdown-toggle,
+.navbar .btn-link,
+.navbar .popover-region-toggle,
+.navbar .editingmode,
+.navbar .editmode-switch-form label {
+    color: rgba(255, 255, 255, 0.90) !important;
+    cursor: pointer;
+    border-radius: $radius-control;
+    transition: background-color 0.15s $ease, color 0.15s $ease;
+
+    &:hover,
+    &:focus {
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.12) !important;
+        border-color: transparent !important;
+        text-decoration: none !important;
+    }
+}
+
+.navbar .btn:hover,
+.navbar .btn:focus,
+.navbar a:hover,
+.navbar a:focus {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border-color: transparent !important;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.navbar .icon,
+.navbar i,
+.navbar .fa,
+.navbar svg,
+.navbar .action-menu-trigger .icon {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+// Notification and message counters in gold.
+.navbar .count-container,
+.navbar .badge {
+    background: $brand-gold !important;
+    color: $brand-primary-deep !important;
+    font-weight: 700;
+}
+
+.navbar .dropdown-menu {
+    background: $surface;
+    border: 1px solid $line-soft;
+    border-radius: $radius-item;
+    box-shadow: $shadow-float;
+    overflow: hidden;
+}
+
+.navbar .dropdown-menu .dropdown-item {
+    color: $ink-body;
+}
+
+.navbar .dropdown-menu a:hover,
+.navbar .dropdown-menu a:focus,
+.navbar .dropdown-menu .dropdown-item:hover,
+.navbar .dropdown-menu .dropdown-item:focus {
+    color: $brand-primary-dark !important;
+    background-color: rgba(58, 24, 103, 0.08) !important;
+}
+
+.navbar .form-control {
+    border: none;
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    border-radius: $radius-control;
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.65);
+    }
+
+    &:focus {
+        background: rgba(255, 255, 255, 0.22);
+        box-shadow: 0 0 0 0.2rem rgba(253, 208, 35, 0.35);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   EDIT MODE TOGGLE — gold when on.
+   -------------------------------------------------------------------------- */
+
+.editmode-switch-form label,
+.editmode-switch-form .custom-control-label,
+.editmode-switch-form .form-check-label,
+.editmode-switch-form .form-check-input + label {
+    color: #ffffff !important;
+}
+
+.editmode-switch-form .custom-control-input:checked ~ .custom-control-label::before,
+.editmode-switch-form .form-check-input:checked {
+    background-color: $brand-gold !important;
+    border-color: $brand-gold !important;
+}
+
+.editmode-switch-form .custom-control-label::before,
+.editmode-switch-form .form-check-input {
+    border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.editmode-switch-form .custom-control-label::after {
+    background-color: $brand-primary-deep !important;
+}
+
+/* --------------------------------------------------------------------------
+   DRAWERS & COURSE INDEX
+   -------------------------------------------------------------------------- */
+
+.drawer.drawer-left.show {
+    background-color: $surface;
+    border-right: 1px solid $line-soft;
+    box-shadow: $shadow-raise;
+    opacity: 1;
+}
+
+.drawer,
+.drawercontent,
+[data-region="drawer"],
+[data-region="blocks-column"],
+.block-region,
+.block-region .card {
+    background: transparent;
+}
+
+#page.drawers .main-inner,
+.main-inner {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.drawer-toggles,
+.drawer-left-toggle,
+.drawer-right-toggle {
+    box-shadow: none !important;
+}
+
+.drawer.drawer-left .drawerheader .drawertoggle,
+.drawer-toggles .btn {
+    color: $brand-primary !important;
+    background: $surface !important;
+    border: 1px solid $line-soft !important;
+    box-shadow: $shadow-rest;
+    transition: box-shadow 0.15s $ease, border-color 0.15s $ease;
+
+    &:hover,
+    &:focus {
+        border-color: $line-strong !important;
+        box-shadow: $shadow-raise;
+        cursor: pointer;
+    }
+}
+
+// Course index links.
+.courseindex .courseindex-item {
+    color: $ink-body;
+    border-radius: $radius-control;
+    border-left: 3px solid transparent;
+    transition: background-color 0.15s $ease;
+
+    &:hover {
+        background: rgba(58, 24, 103, 0.06);
+    }
+}
+
+.courseindex .courseindex-link,
+.courseindex .courseindex-chevron {
+    color: $ink-body;
+}
+
+// Current location in the course gets the gold edge.
+.courseindex .courseindex-item.pageitem,
+.courseindex .courseindex-item.active {
+    background: rgba(58, 24, 103, 0.08) !important;
+    border-left-color: $brand-gold;
+
+    .courseindex-link {
+        color: $brand-primary !important;
+        font-weight: 600;
+    }
+}
+
+.courseindex .courseindex-section-title .courseindex-link {
+    color: $ink-heading;
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   BLOCKS / CARDS
+   -------------------------------------------------------------------------- */
+
+.card,
+.dashboard-card,
+.block.card {
+    background: $surface !important;
+    border: 1px solid $line-soft !important;
+    border-radius: $radius-card;
+    box-shadow: $shadow-rest !important;
+    transition: box-shadow 0.2s $ease, transform 0.2s $ease;
+}
+
+.block {
+    margin-bottom: 1.25rem;
+}
+
+.block .card-body,
+.block .card-text {
+    padding: 1.1rem 1.25rem;
+    border: none !important;
+}
+
+.block .header,
+.block h5,
+.block .card-title {
+    color: $brand-primary;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid $line-soft;
+    padding-bottom: 0.6rem;
+}
+
+.dashboard-card:hover {
+    box-shadow: $shadow-raise !important;
+    transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   MAIN CONTENT
+   -------------------------------------------------------------------------- */
+
+// Activity and admin pages keep a single white content card.
+#region-main {
+    background: $surface !important;
+    border: 1px solid $line-soft !important;
+    border-radius: $radius-card;
+    box-shadow: $shadow-rest !important;
+    padding: 2.25rem 2.5rem;
+}
+
+@media (max-width: 767px) {
+    #region-main {
+        padding: 1.25rem 1rem;
+        border-radius: $radius-item;
+    }
+}
+
+// On the course page itself, the sections are the cards instead,
+// so the outer wrapper goes transparent to avoid card-in-card.
+.path-course-view #region-main {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   COURSE LAYOUT
+   One card per section. Activities are full-width rows inside it,
+   separated by a single hairline. Nothing else draws a border.
+   -------------------------------------------------------------------------- */
+
+// Step 1: strip every background, border, and shadow Moodle puts on the
+// wrappers between the section and the activity rows.
+.course-content,
+.course-content .section .content,
+.course-content .course-section .content,
+.course-content .section-item,
+.course-content .sectionbody,
+.course-content .no-overflow,
+.section-summary,
+.section-summary-activities,
+.section_availability {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.course-content .section .content,
+.course-content .course-section .content,
+.course-content .section-item {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+// Step 2: the section is the one and only card.
+.course-content ul.topics > li.section,
+.course-content ul.weeks > li.section,
+.course-content li.course-section,
+.course-content .course-section {
+    background: $surface !important;
+    border: 1px solid $line-soft !important;
+    border-radius: $radius-card !important;
+    box-shadow: $shadow-rest !important;
+    overflow: hidden;
+    list-style: none;
+    padding: 0 !important;
+    margin: 0 0 1.75rem 0 !important;
+}
+
+.course-content .single-section,
+.course-content .topics,
+.course-content .weeks {
+    margin-top: 1rem;
+}
+
+// Step 3: section header band with the gold tab marker.
+.course-content .course-section-header {
+    background: linear-gradient(180deg, rgba(58, 24, 103, 0.055) 0%, rgba(58, 24, 103, 0.015) 100%);
+    border-bottom: 1px solid $line-soft;
+    padding: 1rem 1.5rem !important;
+    margin: 0 !important;
+}
+
+.sectionname,
+.course-section-header .sectionname {
+    position: relative;
+    color: $brand-primary !important;
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.015em;
+    margin: 0 !important;
+    padding: 0 0 0 1rem !important;
+    border: none !important;
+}
+
+.sectionname::before,
+.course-section-header .sectionname::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.12em;
+    bottom: 0.12em;
+    width: 4px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, $brand-gold 0%, $brand-gold-dark 100%);
+}
+
+.sectionname a {
+    color: inherit !important;
+}
+
+// Section summary sits quietly under the header, aligned with the rows.
+.course-content .section .summary,
+.course-content .course-section .summarytext {
+    color: $ink-muted;
+    padding: 0.85rem 1.5rem 0 1.5rem;
+}
+
+.course-content .section .summary:empty {
+    display: none;
+}
+
+/* --------------------------------------------------------------------------
+   ACTIVITY ROWS
+   -------------------------------------------------------------------------- */
+
+.course-content ul.section {
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.course-content li.activity {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+// One hairline between rows. Never above the first, never below the last.
+.course-content li.activity + li.activity > .activity-item,
+.course-content li.activity + li.activity {
+    border-top: 1px solid $line-soft;
+}
+
+.course-content .activity-item {
+    position: relative;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0.9rem 1.5rem !important;
+    transition: background-color 0.15s $ease;
+}
+
+// Gold edge slides in on hover.
+.course-content .activity-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, $brand-gold 0%, $brand-gold-dark 100%);
+    transform: translateX(-100%);
+    transition: transform 0.18s $ease;
+}
+
+.course-content .activity-item:hover {
+    background: rgba(58, 24, 103, 0.035) !important;
+
+    &::before {
+        transform: translateX(0);
+    }
+}
+
+.course-content .activity-item .activity-basis,
+.course-content .activity-item .activity-grid {
+    align-items: center !important;
+}
+
+// Kill every internal border Moodle draws inside an activity row,
+// including the Bootstrap utility classes its templates sprinkle in.
+// This is what removes the double lines.
+.course-content .activity-item > div,
+.course-content .activity-item .activity-basis,
+.course-content .activity-item .activity-grid,
+.course-content .activity-item .activity-instance,
+.course-content .activity-item .activity-information,
+.course-content .activity-item .activity-info,
+.course-content .activity-item .activity-completion,
+.course-content .activity-item .activity-altcontent,
+.course-content .activity-item .description,
+.course-content .activity-item .description-inner,
+.course-content .activity-item .course-description-item,
+.course-content .activity-item .border,
+.course-content .activity-item .border-top,
+.course-content .activity-item .border-bottom,
+.course-content .activity-item .border-left,
+.course-content .activity-item .border-right,
+.course-content .activity-item hr {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.course-content .activity-item .description,
+.course-content .activity-item .description-inner,
+.course-content .activity-item .contentwithoutlink,
+.label .contentwithoutlink,
+.activity .contentwithoutlink,
+.activity .description {
+    padding: 0;
+}
+
+.course-content .activity-item .description {
+    margin-top: 0.35rem;
+    color: $ink-muted;
+    font-size: 0.9rem;
+}
+
+// Dates ("Opens:", "Due:") as quiet metadata, not boxed rows.
+.course-content .activity-item .activity-dates {
+    background: transparent !important;
+    border: none !important;
+    color: $ink-muted;
+    font-size: 0.82rem;
+    padding: 0;
+    margin-top: 0.25rem;
+}
+
+// Tinted module icon chip.
+.course-content .activity-item .activityiconcontainer {
+    background: rgba(58, 24, 103, 0.07) !important;
+    border: none !important;
+    border-radius: $radius-control !important;
+    box-shadow: none !important;
+}
+
+.activityname a {
+    color: $ink-heading !important;
+    font-weight: 600;
+
+    &:hover,
+    &:focus {
+        color: $brand-primary !important;
+        text-decoration: none !important;
+    }
+}
+
+// Restriction notices as a soft purple note instead of a gray box.
+.course-content .availabilityinfo,
+.course-content .isrestricted {
+    background: rgba(58, 24, 103, 0.05) !important;
+    border: none !important;
+    border-left: 3px solid rgba(58, 24, 103, 0.30) !important;
+    border-radius: 0 $radius-control $radius-control 0;
+    color: $ink-muted;
+    font-size: 0.85rem;
+    padding: 0.45rem 0.85rem;
+    margin-top: 0.5rem;
+}
+
+// Hidden and stealth activities fade back instead of shouting.
+.course-content .activity-item .badge-pill,
+.course-content .activity-item .badge {
+    font-weight: 600;
+}
+
+.course-content .dimmed,
+.course-content .dimmed_text,
+.course-content .dimmed_text a {
+    opacity: 0.65;
+}
+
+// Completion pill fills purple when done.
+.course-content .activity-completion button,
+.activity-completion .btn {
+    border-radius: 999px !important;
+    border: 1px solid $line-strong !important;
+    color: $brand-primary !important;
+    font-weight: 600;
+    transition: background-color 0.15s $ease, color 0.15s $ease;
+}
+
+.course-content .activity-completion button:hover {
+    background: rgba(58, 24, 103, 0.08) !important;
+}
+
+.activity-completion .btn-success,
+.activity-completion button[data-action="toggle-manual-completion"].btn-success {
+    background: $brand-primary !important;
+    border-color: $brand-primary !important;
+    color: #ffffff !important;
+}
+
+/* --------------------------------------------------------------------------
+   SECONDARY NAVIGATION — gold underline on the active tab.
+   -------------------------------------------------------------------------- */
+
+.secondary-navigation {
+    background: transparent;
+    border-bottom: 1px solid $line-soft;
+    margin-bottom: 1.5rem;
+}
+
+.nav-tabs {
+    border-bottom: none;
+
+    .nav-link {
+        color: $ink-muted;
+        font-weight: 500;
+        border: none;
+        border-bottom: 3px solid transparent;
+        border-radius: 0;
+        transition: color 0.15s $ease, border-color 0.15s $ease;
+
+        &:hover,
+        &:focus {
+            color: $brand-primary;
+            border-bottom-color: rgba(58, 24, 103, 0.25);
+        }
+
+        &.active {
+            color: $brand-primary;
+            font-weight: 700;
+            background: transparent;
+            border-bottom-color: $brand-gold;
+        }
+    }
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS
+   -------------------------------------------------------------------------- */
+
+.btn {
+    border-radius: $radius-control;
+    font-weight: 600;
+    transition: background-color 0.15s $ease, box-shadow 0.15s $ease, transform 0.15s $ease;
+}
+
+.btn-primary {
+    background: linear-gradient(180deg, $brand-primary 0%, $brand-primary-dark 100%);
+    border-color: $brand-primary-dark;
+    box-shadow: 0 2px 6px rgba(58, 24, 103, 0.25);
+
+    &:hover,
+    &:focus,
+    &:active {
+        background: $brand-primary-dark;
+        border-color: $brand-primary-deep;
+        box-shadow: 0 4px 12px rgba(58, 24, 103, 0.30);
+        transform: translateY(-1px);
+    }
+}
+
+.btn-outline-primary {
+    color: $brand-primary;
+    border-color: $line-strong;
+
+    &:hover,
+    &:focus {
+        background: $brand-primary;
+        border-color: $brand-primary;
+        color: #ffffff;
+    }
+}
+
+.btn-secondary {
+    border-radius: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   FORMS
+   -------------------------------------------------------------------------- */
+
+.form-control,
+.custom-select {
+    border-radius: $radius-control;
+    border-color: $line-strong;
+    transition: border-color 0.15s $ease, box-shadow 0.15s $ease;
+
+    &:focus {
+        border-color: $brand-primary;
+        box-shadow: 0 0 0 0.2rem rgba(58, 24, 103, 0.12);
+    }
+}
+
+label,
+.col-form-label {
+    color: $ink-heading;
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   TABLES — purple header with a gold rule beneath it.
+   -------------------------------------------------------------------------- */
+
+.generaltable,
+.table {
+    background: $surface;
+    border-radius: $radius-item;
+    overflow: hidden;
+    box-shadow: $shadow-rest;
+}
+
+.generaltable th,
+.generaltable td,
+.table th,
+.table td {
+    border-color: $line-soft !important;
+    vertical-align: middle;
+}
+
+.generaltable thead th,
+.table thead th {
+    background: $brand-primary;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-color: $brand-primary-dark !important;
+    border-bottom: 2px solid $brand-gold !important;
+}
+
+.generaltable tbody tr:nth-of-type(even) {
+    background: $surface-tint;
+}
+
+.generaltable tbody tr:hover,
+.table tbody tr:hover {
+    background: rgba(58, 24, 103, 0.06);
+}
+
+/* --------------------------------------------------------------------------
+   SMALL COMPONENTS
+   -------------------------------------------------------------------------- */
+
+.breadcrumb {
+    background: transparent;
+    padding-left: 0;
+
+    .breadcrumb-item a {
+        color: $ink-muted;
+
+        &:hover {
+            color: $brand-primary;
+        }
+    }
+
+    .breadcrumb-item.active {
+        color: $brand-primary;
+        font-weight: 600;
+    }
+}
+
+.badge-primary {
+    background: $brand-primary;
+}
+
+.badge-warning {
+    background: $brand-gold;
+    color: $brand-primary-deep;
+}
+
+.progress {
+    border-radius: 999px;
+    background: rgba(58, 24, 103, 0.10);
+    overflow: hidden;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, $brand-primary 0%, $brand-primary-dark 100%);
+}
+
+.alert-info {
+    background: rgba(58, 24, 103, 0.07);
+    border: 1px solid rgba(58, 24, 103, 0.15);
+    border-left: 4px solid $brand-primary;
+    border-radius: $radius-control;
+    color: $brand-primary-dark;
+}
+
+.alert-warning {
+    border-left: 4px solid $brand-gold;
+    border-radius: $radius-control;
+}
+
+.calendar_event_course,
+.calendar_event_group,
+.calendar_event_user,
+.calendar_event_site {
+    border-left: 4px solid $brand-primary;
+}
+
+.tag,
+.badge-info {
+    background: rgba(58, 24, 103, 0.08);
+    color: $brand-primary;
+    border-radius: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   LOGIN PAGE — quiet gradient backdrop, gold-tipped card.
+   -------------------------------------------------------------------------- */
+
+.pagelayout-login #page {
+    background:
+        radial-gradient(circle at 15% 0%, rgba(58, 24, 103, 0.14), transparent 36rem),
+        radial-gradient(circle at 90% 95%, rgba(253, 208, 35, 0.10), transparent 28rem),
+        $body-bg;
+}
+
+.login-container {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid $line-soft;
+    border-radius: $radius-card;
+    box-shadow: $shadow-float;
+}
+
+// Purple-to-gold bar across the top of the login card.
+.login-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, $brand-primary 0%, $brand-primary 65%, $brand-gold 100%);
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER
+   -------------------------------------------------------------------------- */
+
+#page-footer {
+    background: linear-gradient(180deg, $brand-primary-dark 0%, $brand-primary-deep 100%);
+    border-top: 3px solid $brand-gold;
+    color: rgba(255, 255, 255, 0.85);
+
+    a {
+        color: #ffffff;
+        text-decoration-color: rgba(253, 208, 35, 0.5);
+
+        &:hover {
+            color: $brand-gold;
+        }
+    }
+}

@@ -1,0 +1,373 @@
+/* ==========================================================================
+   LSU Purple — dark.scss
+   Dark mode. Active only when lib.php adds the lsudark body class,
+   which happens when the user profile field darkmode is set.
+   Compiled after post.scss so equal-importance rules here win the cascade.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   GLOBAL SURFACES
+   -------------------------------------------------------------------------- */
+
+body.lsudark,
+.lsudark #page,
+.lsudark #page-wrapper,
+.lsudark #page.drawers,
+.lsudark #page.drawers div[role="main"],
+.lsudark #page-content,
+.lsudark #region-main-box {
+    background: $dark-bg;
+    color: $dark-text;
+}
+
+.lsudark h1,
+.lsudark h2,
+.lsudark h3,
+.lsudark h4,
+.lsudark .page-context-header .page-header-headings h1 {
+    color: $dark-heading;
+}
+
+.lsudark a {
+    color: $dark-link;
+    text-decoration-color: rgba(192, 166, 240, 0.4);
+
+    &:hover,
+    &:focus {
+        color: $dark-link-hover;
+        text-decoration-color: $brand-gold;
+    }
+}
+
+.lsudark ::selection {
+    background: $dark-link;
+    color: $dark-bg;
+}
+
+.lsudark ::-webkit-scrollbar-thumb {
+    background: rgba(192, 166, 240, 0.25);
+    border-color: $dark-bg;
+
+    &:hover {
+        background: rgba(192, 166, 240, 0.45);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   HEADER — deeper purple so the gold keyline still reads.
+   -------------------------------------------------------------------------- */
+
+.lsudark .navbar,
+.lsudark .navbar.fixed-top {
+    background: linear-gradient(180deg, #2a1149 0%, #1e0c36 100%) !important;
+}
+
+.lsudark .navbar .dropdown-menu {
+    background: $dark-raised;
+    border-color: $dark-line-soft;
+}
+
+.lsudark .navbar .dropdown-menu .dropdown-item {
+    color: $dark-text;
+}
+
+.lsudark .navbar .dropdown-menu a:hover,
+.lsudark .navbar .dropdown-menu a:focus,
+.lsudark .navbar .dropdown-menu .dropdown-item:hover,
+.lsudark .navbar .dropdown-menu .dropdown-item:focus {
+    color: #ffffff !important;
+    background-color: $dark-tint !important;
+}
+
+/* --------------------------------------------------------------------------
+   DRAWERS & COURSE INDEX
+   -------------------------------------------------------------------------- */
+
+.lsudark .drawer.drawer-left.show,
+.lsudark .drawer.drawer-right.show {
+    background-color: $dark-surface;
+    border-color: $dark-line-soft;
+}
+
+.lsudark .drawer.drawer-left .drawerheader .drawertoggle,
+.lsudark .drawer-toggles .btn {
+    color: $dark-link !important;
+    background: $dark-raised !important;
+    border-color: $dark-line-soft !important;
+}
+
+.lsudark .courseindex .courseindex-item {
+    color: $dark-text;
+
+    &:hover {
+        background: $dark-tint;
+    }
+}
+
+.lsudark .courseindex .courseindex-link,
+.lsudark .courseindex .courseindex-chevron {
+    color: $dark-text;
+}
+
+.lsudark .courseindex .courseindex-item.pageitem,
+.lsudark .courseindex .courseindex-item.active {
+    background: rgba(192, 166, 240, 0.12) !important;
+
+    .courseindex-link {
+        color: $dark-link !important;
+    }
+}
+
+.lsudark .courseindex .courseindex-section-title .courseindex-link {
+    color: $dark-heading;
+}
+
+/* --------------------------------------------------------------------------
+   CARDS, BLOCKS, MAIN CONTENT
+   -------------------------------------------------------------------------- */
+
+.lsudark .card,
+.lsudark .dashboard-card,
+.lsudark .block.card {
+    background: $dark-surface !important;
+    border-color: $dark-line-soft !important;
+}
+
+.lsudark .block .header,
+.lsudark .block h5,
+.lsudark .block .card-title {
+    color: $dark-link;
+    border-bottom-color: $dark-line-soft;
+}
+
+.lsudark #region-main {
+    background: $dark-surface !important;
+    border-color: $dark-line-soft !important;
+}
+
+.lsudark.path-course-view #region-main {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   COURSE LAYOUT
+   -------------------------------------------------------------------------- */
+
+.lsudark .course-content ul.topics > li.section,
+.lsudark .course-content ul.weeks > li.section,
+.lsudark .course-content li.course-section,
+.lsudark .course-content .course-section {
+    background: $dark-surface !important;
+    border-color: $dark-line-soft !important;
+}
+
+.lsudark .course-content .course-section-header {
+    background: linear-gradient(180deg, rgba(192, 166, 240, 0.07) 0%, rgba(192, 166, 240, 0.02) 100%);
+    border-bottom-color: $dark-line-soft;
+}
+
+.lsudark .sectionname,
+.lsudark .course-section-header .sectionname {
+    color: $dark-link !important;
+}
+
+.lsudark .course-content .section .summary,
+.lsudark .course-content .course-section .summarytext {
+    color: $dark-muted;
+}
+
+.lsudark .course-content li.activity + li.activity > .activity-item,
+.lsudark .course-content li.activity + li.activity {
+    border-top-color: $dark-line-soft;
+}
+
+.lsudark .course-content .activity-item:hover {
+    background: $dark-tint !important;
+}
+
+.lsudark .activityname a {
+    color: $dark-heading !important;
+
+    &:hover,
+    &:focus {
+        color: $dark-link !important;
+    }
+}
+
+.lsudark .course-content .activity-item .activityiconcontainer {
+    background: rgba(192, 166, 240, 0.12) !important;
+}
+
+.lsudark .course-content .activity-item .description,
+.lsudark .course-content .activity-item .activity-dates {
+    color: $dark-muted;
+}
+
+.lsudark .course-content .availabilityinfo,
+.lsudark .course-content .isrestricted {
+    background: rgba(192, 166, 240, 0.07) !important;
+    border-left-color: rgba(192, 166, 240, 0.35) !important;
+    color: $dark-muted;
+}
+
+.lsudark .course-content .activity-completion button,
+.lsudark .activity-completion .btn {
+    border-color: $dark-line-strong !important;
+    color: $dark-link !important;
+}
+
+.lsudark .course-content .activity-completion button:hover {
+    background: $dark-tint !important;
+}
+
+/* --------------------------------------------------------------------------
+   NAVIGATION TABS, BUTTONS, FORMS
+   -------------------------------------------------------------------------- */
+
+.lsudark .secondary-navigation {
+    border-bottom-color: $dark-line-soft;
+}
+
+.lsudark .nav-tabs .nav-link {
+    color: $dark-muted;
+
+    &:hover,
+    &:focus {
+        color: $dark-link;
+        border-bottom-color: rgba(192, 166, 240, 0.35);
+    }
+
+    &.active {
+        color: $dark-link;
+        border-bottom-color: $brand-gold;
+    }
+}
+
+.lsudark .btn-outline-primary {
+    color: $dark-link;
+    border-color: $dark-line-strong;
+
+    &:hover,
+    &:focus {
+        background: $dark-link;
+        border-color: $dark-link;
+        color: $dark-bg;
+    }
+}
+
+.lsudark .form-control,
+.lsudark .custom-select {
+    background: $dark-raised;
+    border-color: $dark-line-strong;
+    color: $dark-text;
+
+    &::placeholder {
+        color: $dark-muted;
+    }
+
+    &:focus {
+        background: $dark-raised;
+        border-color: $dark-link;
+        box-shadow: 0 0 0 0.2rem rgba(192, 166, 240, 0.20);
+        color: $dark-text;
+    }
+}
+
+.lsudark label,
+.lsudark .col-form-label {
+    color: $dark-heading;
+}
+
+/* --------------------------------------------------------------------------
+   TABLES & SMALL COMPONENTS
+   -------------------------------------------------------------------------- */
+
+.lsudark .generaltable,
+.lsudark .table {
+    background: $dark-surface;
+    color: $dark-text;
+}
+
+.lsudark .generaltable th,
+.lsudark .generaltable td,
+.lsudark .table th,
+.lsudark .table td {
+    border-color: $dark-line-soft !important;
+    color: $dark-text;
+}
+
+.lsudark .generaltable tbody tr:nth-of-type(even) {
+    background: rgba(192, 166, 240, 0.04);
+}
+
+.lsudark .generaltable tbody tr:hover,
+.lsudark .table tbody tr:hover {
+    background: $dark-tint;
+}
+
+.lsudark .breadcrumb .breadcrumb-item a {
+    color: $dark-muted;
+
+    &:hover {
+        color: $dark-link;
+    }
+}
+
+.lsudark .breadcrumb .breadcrumb-item.active {
+    color: $dark-link;
+}
+
+.lsudark .progress {
+    background: rgba(192, 166, 240, 0.15);
+}
+
+.lsudark .alert-info {
+    background: rgba(192, 166, 240, 0.08);
+    border-color: rgba(192, 166, 240, 0.20);
+    border-left-color: $dark-link;
+    color: $dark-text;
+}
+
+.lsudark .tag,
+.lsudark .badge-info {
+    background: rgba(192, 166, 240, 0.14);
+    color: $dark-link;
+}
+
+.lsudark .dropdown-menu {
+    background: $dark-raised;
+    border-color: $dark-line-soft;
+
+    .dropdown-item {
+        color: $dark-text;
+
+        &:hover,
+        &:focus {
+            background: $dark-tint;
+            color: #ffffff;
+        }
+    }
+}
+
+.lsudark .modal-content {
+    background: $dark-surface;
+    color: $dark-text;
+    border-color: $dark-line-soft;
+}
+
+/* --------------------------------------------------------------------------
+   LOGIN
+   -------------------------------------------------------------------------- */
+
+.lsudark.pagelayout-login #page {
+    background:
+        radial-gradient(circle at 15% 0%, rgba(192, 166, 240, 0.10), transparent 36rem),
+        radial-gradient(circle at 90% 95%, rgba(253, 208, 35, 0.06), transparent 28rem),
+        $dark-bg;
+}
+
+.lsudark .login-container {
+    background: $dark-surface;
+    border-color: $dark-line-soft;
+}

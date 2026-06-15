@@ -145,27 +145,20 @@ hr,
 
 .navbar .navbar-brand {
     display: flex;
-    align-items: center;
+    align-items: left;
     min-height: 48px;
-    min-width: 180px;
-    color: #ffffff !important;
+    min-width: 150px;
+    margin-bottom: 5px;
+    color: transparent !important;
+    background-image: url("https://testrusso.lsu.edu/rrusso/pix/lsu/lsu_ffffff.svg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+}
 
-    &::before {
-        content: "";
-        display: block;
-        width: 160px;
-        height: 36px;
-        background-image: url("https://testrusso.lsu.edu/rrusso/pix/lsu/lsu_ffffff.svg");
-        background-repeat: no-repeat;
-        background-position: left center;
-        background-size: contain;
-        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
-    }
-
-    &:hover,
-    &:focus {
-        color: #ffffff !important;
-    }
+.navbar-brand.me-4 {
+    margin-right: 0 !important;
 }
 
 .navbar .navbar-brand .site-name {
@@ -196,11 +189,11 @@ hr,
 .navbar .btn:focus,
 .navbar a:hover,
 .navbar a:focus {
-    color: #ffffff !important;
-    background-color: rgba(255, 255, 255, 0.12) !important;
-    border-color: transparent !important;
-    text-decoration: none !important;
-    cursor: pointer;
+    color: transparent !important;
+    background-color: unset;
+    border-color: unset;
+    text-decoration: unset;
+    cursor: unset;
 }
 
 .navbar .icon,

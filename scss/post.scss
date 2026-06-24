@@ -279,11 +279,19 @@ hr,
    DRAWERS & COURSE INDEX
    -------------------------------------------------------------------------- */
 
-.drawer.drawer-left.show {
-    background-color: $surface;
-    border-right: 1px solid $line-soft;
+.drawer.drawer-left.show, .drawer-right.show {
+    color: $brand-primary;
+    background-color: $brand-primary;
     box-shadow: $shadow-raise;
     opacity: 1;
+}
+
+.drawer.drawer-left.show {
+    border-right: 3px solid $brand-gold;
+}
+
+.drawer-right.show {
+    border-left: 3px solid $brand-gold;
 }
 
 .drawer,
@@ -309,9 +317,10 @@ hr,
 }
 
 .drawer.drawer-left .drawerheader .drawertoggle,
+.drawer-toggles .btn, .drawer.drawer-right .drawerheader .drawertoggle,
 .drawer-toggles .btn {
-    color: $brand-primary !important;
-    background: $surface !important;
+    color: $brand-primary-deep !important;
+    background: $surface-darker !important;
     border: 1px solid $line-soft !important;
     box-shadow: $shadow-rest;
     transition: box-shadow 0.15s $ease, border-color 0.15s $ease;
@@ -321,6 +330,8 @@ hr,
         border-color: $line-strong !important;
         box-shadow: $shadow-raise;
         cursor: pointer;
+        background-color: $brand-gold !important;
+        transition: background-color 0.15s $ease;
     }
 }
 
@@ -343,6 +354,7 @@ hr,
     position: relative;
     background: rgba(58, 24, 103, 0.05);
     border-bottom: 1px solid $line-soft;
+    border-radius: $radius-item $radius-item 0 0 !important;
     padding: 0.45rem 0.5rem 0.45rem 0.85rem;
 }
 
@@ -373,13 +385,15 @@ hr,
 // Activities nest inside the section card.
 .courseindex .courseindex-sectioncontent {
     padding: 0.3rem 0.35rem;
+    background-color: $surface;
 }
 
 .courseindex .courseindex-item {
     color: $ink-body;
     border-radius: $radius-control;
-    border-left: 3px solid transparent;
+    //border-left: 3px solid transparent;
     transition: background-color 0.15s $ease;
+    list-style-type: none;
 
     &:hover {
         background: rgba(58, 24, 103, 0.07);
@@ -413,7 +427,24 @@ hr,
 }
 
 .courseindex .courseindex-section:not(:has(.pageitem)) .courseindex-section-title {
-    background: transparent;
+    background: $surface;
+}
+
+.courseindex .courseindex-item.pageitem i.icon.fa-fw,
+.courseindex .courseindex-item.active i.icon.fa-fw {
+    color: $brand-primary;
+}
+
+.drawerheader #courseindexdrawercontrols .btn.rounded-circle {
+    background-color: $surface-darker !important;
+    border: 1px solid $line-soft !important;
+    box-shadow: $shadow-rest;
+    transition: box-shadow 0.15s $ease, border-color 0.15s $ease;
+
+    &:hover {
+        background-color: $brand-gold !important;
+        transition: background-color 0.15s $ease;
+    }
 }
 
 /* --------------------------------------------------------------------------

@@ -51,6 +51,10 @@ body,
     color: $ink-body;
 }
 
+#page-wrapper #page.show {
+    margin-right: 350px;
+}
+
 body {
     font-size: 0.9625rem;
     line-height: 1.6;
@@ -292,6 +296,8 @@ hr,
 
 .drawer-right.show {
     border-left: 3px solid $brand-gold;
+    width: 350px;
+    max-width: 350px;
 }
 
 .drawer,
@@ -473,8 +479,14 @@ hr,
 
 .block .card-body,
 .block .card-text {
-    padding: 1.1rem 1.25rem;
+    padding: 0 0 1rem 1rem;
     border: none !important;
+    margin-top: 0.5rem !important;
+}
+
+.block .card-body #settingsnav,
+.block .card-text #settingsnav {
+    padding-top: 0 !important;
 }
 
 .block .header,
@@ -492,6 +504,26 @@ hr,
 .dashboard-card:hover {
     box-shadow: $shadow-raise !important;
     transform: translateY(-2px);
+}
+
+.block li.contains_branch ul {
+    padding-left: 1rem;
+}
+
+.block_settings .block_tree p.hasicon {
+    padding-left: 1rem;
+}
+
+.block_settings .block_tree .tree_item.branch {
+    padding-left: 1rem;
+}
+
+.block_tree .tree_item.branch {
+    margin-left: 0;
+}
+
+.block #settingsnav .block_tree .tree_item.root_node.tree_item.branch {
+    padding-left: 0 !important;
 }
 
 /* --------------------------------------------------------------------------

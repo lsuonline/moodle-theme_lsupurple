@@ -349,6 +349,14 @@ hr,
     overflow: hidden;
 }
 
+.courseindex .courseindex-section .courseindex-item.dimmed:after {
+    content: "\f070";
+    padding-left: 0.5rem;
+    display: inline-block;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 500;
+}
+
 // Section title is a header band, echoing the main content cards.
 .courseindex .courseindex-section-title {
     position: relative;
@@ -373,8 +381,6 @@ hr,
     color: $brand-primary;
     font-weight: 700;
     font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
 }
 
 .courseindex .courseindex-section-title .courseindex-chevron,

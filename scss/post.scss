@@ -62,7 +62,7 @@ body {
 }
 
 a {
-    color: $brand-primary;
+    color: $brand-primary-deep;
     text-decoration-color: rgba(58, 24, 103, 0.35);
     text-underline-offset: 2px;
 
@@ -82,7 +82,7 @@ h1, h2, h3, h4,
 
 h1,
 .page-context-header .page-header-headings h1 {
-    color: $brand-primary;
+    color: $brand-primary-deep;
     font-size: 1.85rem;
 }
 
@@ -140,7 +140,7 @@ hr,
 
 .navbar,
 .navbar.fixed-top {
-    background: linear-gradient(180deg, $brand-primary 0%, $brand-primary-dark 100%) !important;
+    background: linear-gradient(180deg, $brand-primary-dark 0%, $brand-primary 100%) !important;
     border-bottom: none !important;
     box-shadow:
         inset 0 -3px 0 $brand-gold,
@@ -253,6 +253,11 @@ hr,
     }
 }
 
+.navbar-toggler {
+  background-color: $surface-darker !important;
+}
+
+
 /* --------------------------------------------------------------------------
    EDIT MODE TOGGLE — gold when on.
    -------------------------------------------------------------------------- */
@@ -284,7 +289,7 @@ hr,
    -------------------------------------------------------------------------- */
 
 .drawer.drawer-left.show, .drawer-right.show {
-    color: $brand-primary;
+    color: $surface;
     background-color: $brand-primary;
     box-shadow: $shadow-raise;
     opacity: 1;
@@ -384,14 +389,14 @@ hr,
 }
 
 .courseindex .courseindex-section-title .courseindex-link {
-    color: $brand-primary;
+    color: $brand-primary-deep;
     font-weight: 700;
     font-size: 0.85rem;
 }
 
 .courseindex .courseindex-section-title .courseindex-chevron,
 .courseindex .courseindex-section-title .icons-collapse-expand {
-    color: $brand-primary;
+    color: $brand-primary-deep;
 }
 
 // Activities nest inside the section card.
@@ -444,7 +449,7 @@ hr,
 
 .courseindex .courseindex-item.pageitem i.icon.fa-fw,
 .courseindex .courseindex-item.active i.icon.fa-fw {
-    color: $brand-primary;
+    color: $brand-primary-deep;
 }
 
 .drawerheader #courseindexdrawercontrols .btn.rounded-circle {
@@ -492,7 +497,7 @@ hr,
 .block .header,
 .block h5,
 .block .card-title {
-    color: $brand-primary;
+    color: $brand-primary-deep;
     font-weight: 700;
     font-size: 0.85rem;
     text-transform: uppercase;
@@ -533,16 +538,12 @@ hr,
 // Activity and admin pages keep a single white content card.
 #region-main {
     background: $surface !important;
-    border: 1px solid $line-soft !important;
-    border-radius: $radius-card;
-    box-shadow: $shadow-rest !important;
     padding: 2.25rem 2.5rem;
 }
 
 @media (max-width: 767px) {
     #region-main {
         padding: 1.25rem 1rem;
-        border-radius: $radius-item;
     }
 }
 
@@ -832,7 +833,7 @@ hr,
 
 .secondary-navigation {
     background: transparent;
-    border-bottom: 1px solid $line-soft;
+ //   border-bottom: 1px solid $line-soft;
     margin-bottom: 1.5rem;
 }
 
@@ -849,12 +850,12 @@ hr,
 
         &:hover,
         &:focus {
-            color: $brand-primary;
+            color: $brand-primary-deep;
             border-bottom-color: rgba(58, 24, 103, 0.25);
         }
 
         &.active {
-            color: $brand-primary;
+            color: $brand-primary-deep;
             font-weight: 700;
             background: transparent;
             border-bottom-color: $brand-gold;
@@ -888,13 +889,13 @@ hr,
 }
 
 .btn-outline-primary {
-    color: $brand-primary;
+    color: $brand-primary-deep;
     border-color: $line-strong;
 
     &:hover,
     &:focus {
         background: $brand-primary;
-        border-color: $brand-primary;
+        border-color: $brand-primary-deep;
         color: #ffffff;
     }
 }
@@ -914,7 +915,7 @@ hr,
     transition: border-color 0.15s $ease, box-shadow 0.15s $ease;
 
     &:focus {
-        border-color: $brand-primary;
+        border-color: $brand-primary-deep;
         box-shadow: 0 0 0 0.2rem rgba(58, 24, 103, 0.12);
     }
 }
@@ -978,12 +979,12 @@ label,
         color: $ink-muted;
 
         &:hover {
-            color: $brand-primary;
+            color: $brand-primary-deep;
         }
     }
 
     .breadcrumb-item.active {
-        color: $brand-primary;
+        color: $brand-primary-deep;
         font-weight: 600;
     }
 }
@@ -1030,8 +1031,62 @@ label,
 .tag,
 .badge-info {
     background: rgba(58, 24, 103, 0.08);
-    color: $brand-primary;
+    color: $brand-primary-deep;
     border-radius: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   USERMENU - readability and usability is key.
+   -------------------------------------------------------------------------- */
+
+.usermenu .dropdown a#user-menu-toggle {
+    color: $surface;
+
+    &:active,
+    &:hover {
+        color: $brand-gold !important;
+    }
+}
+
+.navbar .editmode-switch-form label,
+.navbar .editmode-switch-form label {
+    color: $surface;
+
+    &:active,
+    &:focus,
+    &:hover {
+        color: $brand-gold !important;
+        background-color: unset !important;
+    }
+}
+
+.navbar .dropdown-toggle {
+    color: $surface;
+
+    &:active,
+    &:focus,
+    &:hover {
+        border-radius: $radius-control !important;
+    }
+}
+
+.navbar .simplesearchform a.nav-link {
+    color: $surface;
+
+    &:active,
+    &:focus,
+    &:hover {
+        border-radius: $radius-control !important;
+    }
+}
+
+.notloggedin .usermenu .login a {
+    color: $surface;
+
+    &:active,
+    &:hover {
+        color: $brand-gold !important;
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -1068,7 +1123,7 @@ label,
    FOOTER
    -------------------------------------------------------------------------- */
 
-#page-footer {
+#page-footer:not(:has(.popover)) {
     background: linear-gradient(180deg, $brand-primary-dark 0%, $brand-primary-deep 100%);
     border-top: 3px solid $brand-gold;
     color: rgba(255, 255, 255, 0.85);

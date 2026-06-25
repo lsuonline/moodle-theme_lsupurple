@@ -75,12 +75,48 @@ function theme_lsupurple_get_extra_scss($theme) {
     $scss = file_get_contents($CFG->dirroot . '/theme/lsupurple/scss/post.scss');
     $scss .= file_get_contents($CFG->dirroot . '/theme/lsupurple/scss/dark.scss');
 
+    $imageurl = $theme->setting_file_url('backgroundimage', 'backgroundimage');
+    if (!empty($imageurl)) {
+        $scss .= "\n@media (min-width: 768px) { body { background-image: url('{$imageurl}'); background-size: cover; } }";
+    }
+
+    $loginbackgroundimageurl = $theme->setting_file_url('loginbackgroundimage', 'loginbackgroundimage');
+    if (!empty($loginbackgroundimageurl)) {
+        $scss .= "\nbody.pagelayout-login #page { background-image: url('{$loginbackgroundimageurl}'); background-size: cover; }";
+    }
+
     $raw = get_config('theme_lsupurple', 'scss');
     if (!empty($raw)) {
         $scss .= "\n" . $raw . "\n";
     }
 
     return $scss;
+}
+
+/**
+ * Serves any files associated with the theme settings.
+ *
+ * @param stdClass $course
+ * @param stdClass $cm
+ * @param context $context
+ * @param string $filearea
+ * @param array $args
+ * @param bool $forcedownload
+ * @param array $options
+ * @return bool
+ */
+function theme_lsupurple_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+    if ($context->contextlevel == CONTEXT_SYSTEM && ($filearea === 'logo' || $filearea === 'backgroundimage' ||
+        $filearea === 'loginbackgroundimage')) {
+        $theme = theme_config::load('lsupurple');
+        // By default, theme files must be cache-able by both browsers and proxies.
+        if (!array_key_exists('cacheability', $options)) {
+            $options['cacheability'] = 'public';
+        }
+        return $theme->setting_file_serve($filearea, $args, $forcedownload, $options);
+    } else {
+        send_file_not_found();
+    }
 }
 
 // Runs on every page before output. Tags the body with the dark

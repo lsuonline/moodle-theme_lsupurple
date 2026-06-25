@@ -35,6 +35,28 @@ if ($ADMIN->fulltree) {
     $page = new admin_settingpage('theme_lsupurple_general',
         get_string('generalsettings', 'theme_lsupurple'));
 
+    // Unaddable blocks.
+    $default = 'navigation,settings,course_list,section_links';
+    $setting = new admin_setting_configtext('theme_lsupurple/unaddableblocks',
+        get_string('unaddableblocks', 'theme_lsupurple'), get_string('unaddableblocks_desc', 'theme_lsupurple'), $default, PARAM_TEXT);
+    $page->add($setting);
+
+    // Background image setting.
+    $name = 'theme_lsupurple/backgroundimage';
+    $title = get_string('backgroundimage', 'theme_lsupurple');
+    $description = get_string('backgroundimage_desc', 'theme_lsupurple');
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'backgroundimage');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Login Background image setting.
+    $name = 'theme_lsupurple/loginbackgroundimage';
+    $title = get_string('loginbackgroundimage', 'theme_lsupurple');
+    $description = get_string('loginbackgroundimage_desc', 'theme_lsupurple');
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'loginbackgroundimage');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
     $name = 'theme_lsupurple/brandcolor';
     $title = get_string('brandcolor', 'theme_lsupurple');
     $description = get_string('brandcolordesc', 'theme_lsupurple');

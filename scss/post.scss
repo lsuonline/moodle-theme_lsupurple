@@ -48,7 +48,7 @@ body,
 #page-content,
 #region-main-box {
     background: $body-bg;
-    color: $ink-body;
+    color: $ink-darkest;
 }
 
 #page-wrapper #page.show {
@@ -389,7 +389,7 @@ hr,
 }
 
 .courseindex .courseindex-section-title .courseindex-link {
-    color: $brand-primary-deep;
+    color: $brand-primary;
     font-weight: 700;
     font-size: 0.85rem;
 }
@@ -482,6 +482,18 @@ hr,
     margin-bottom: 1.25rem;
 }
 
+.block .dropdown-menu-right.show a,
+.block .dropdown-menu-right.show .menu-action-text {
+    text-transform: none;
+    letter-spacing: none;
+
+    &:active,
+    &:hover,
+    &:focus {
+        color: $surface !important;
+    }
+}
+
 .block .card-body,
 .block .card-text {
     padding: 0 0 1rem 1rem;
@@ -489,14 +501,32 @@ hr,
     margin-top: 0.5rem !important;
 }
 
-.block .card-body #settingsnav,
-.block .card-text #settingsnav {
-    padding-top: 0 !important;
+.block .card-body,
+.block .card-text {
+
+    #settingsnav {
+        padding-top: 0 !important;
+    }
+
+    .content {
+        color: $ink-darkest;
+    }
+
+    a,
+    &:link {
+        color: $brand-primary;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $ink-darkest !important;
+        }
+    }
 }
 
-.block .header,
+.block .header:not(:has(.dropdown-menu-right.show)),
 .block h5,
-.block .card-title {
+.block .card-title:not(:has(.dropdown-menu-right.show)) {
     color: $brand-primary-deep;
     font-weight: 700;
     font-size: 0.85rem;
@@ -953,7 +983,6 @@ label,
     font-weight: 600;
     font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
     border-color: $brand-primary-dark !important;
     border-bottom: 2px solid $brand-gold !important;
 }
@@ -1136,4 +1165,30 @@ label,
             color: $brand-gold;
         }
     }
+}
+
+/* --------------------------------------------------------------------------
+   MODAL
+   -------------------------------------------------------------------------- */
+.modal-backdrop.in.show {
+    opacity: 0.8;
+}
+
+div.modal.show .modal-dialog,
+div.modal.show .modchooser,
+div.modal.show .modal-l {
+    max-width: unset;
+
+    .modal-content {
+        max-width: 80%;
+    }
+
+    &:focus-visible {
+        outline: none !important;
+    }
+}
+
+div.modal.show .bg-light {
+    border-radius: $radius-card;
+    background-color: $brand-lightest;
 }

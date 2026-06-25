@@ -55,6 +55,11 @@ body,
     margin-right: 350px;
 }
 
+#page.drawers.show-drawer-right,
+#page.drawers.show-drawer-left.show-drawer-right {
+    margin-right: 350px;
+}
+
 body {
     font-size: 0.9625rem;
     line-height: 1.6;
@@ -217,24 +222,45 @@ hr,
     font-weight: 700;
 }
 
-.navbar .dropdown-menu {
+.navbar .dropdown-menu {//:not(:has(.dropdown-menu-left.show)) {
     background: $surface;
     border: 1px solid $line-soft;
     border-radius: $radius-item;
     box-shadow: $shadow-float;
     overflow: hidden;
+
+    .dropdown-item {
+        color: $ink-body;
+
+        &:active,
+        &:focus,
+        &:hover {
+            color: $brand-primary-dark !important;
+            background-color: rgba(58, 24, 103, 0.2) !important;
+        }
+    }
+
+    a {
+        &:active,
+        &:focus,
+        &:hover {
+            color: $brand-primary-dark !important;
+            background-color: rgba(58, 24, 103, 0.2) !important;
+        }
+    }
 }
 
-.navbar .dropdown-menu .dropdown-item {
-    color: $ink-body;
-}
+.dropdown-menu-right.show {
+    background: $brand-primary;
 
-.navbar .dropdown-menu a:hover,
-.navbar .dropdown-menu a:focus,
-.navbar .dropdown-menu .dropdown-item:hover,
-.navbar .dropdown-menu .dropdown-item:focus {
-    color: $brand-primary-dark !important;
-    background-color: rgba(58, 24, 103, 0.08) !important;
+    .dropdown-item {
+        color: $surface !important;
+
+        &:active,
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.25) !important;
+        }
+    }
 }
 
 .navbar .form-control {
@@ -453,14 +479,18 @@ hr,
 }
 
 .drawerheader #courseindexdrawercontrols .btn.rounded-circle {
-    background-color: $surface-darker !important;
-    border: 1px solid $line-soft !important;
-    box-shadow: $shadow-rest;
-    transition: box-shadow 0.15s $ease, border-color 0.15s $ease;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    transition: none;
+    color: $surface;
 
+    &:active,
+    &:focus,
     &:hover {
-        background-color: $brand-gold !important;
-        transition: background-color 0.15s $ease;
+        background-color: transparent;
+        transition: none;
+        color: none;
     }
 }
 
@@ -559,6 +589,18 @@ hr,
 
 .block #settingsnav .block_tree .tree_item.root_node.tree_item.branch {
     padding-left: 0 !important;
+}
+
+.block .menubar .dropdown a.dropdown-toggle {
+    color: $brand-primary;
+
+    &:active,
+    &:hover,
+    &:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
 }
 
 /* --------------------------------------------------------------------------

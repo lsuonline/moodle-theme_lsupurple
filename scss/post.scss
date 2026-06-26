@@ -36,6 +36,10 @@
   max-width: none !important;
 }
 
+.header-maxwidth {
+  max-width: none !important;
+}
+
 /* --------------------------------------------------------------------------
    GLOBAL
    -------------------------------------------------------------------------- */
@@ -141,6 +145,10 @@ hr,
 
 .bg-light {
     background-color: $surface-darker !important;
+}
+
+.path-mod .activity-header:not(:empty) {
+    background-color: $body-bg;
 }
 
 /* --------------------------------------------------------------------------
@@ -944,28 +952,44 @@ hr,
     margin-bottom: 1.5rem;
 }
 
+.secondary-navigation nav.navigation {
+    background-color: $surface-darker-purple;
+    border-radius: $radius-card;
+}
+
 .nav-tabs {
     border-bottom: none;
+    background: transparent !important;
 
     .nav-link {
         color: $ink-muted;
         font-weight: 500;
         border: none;
+        border-radius: $radius-card $radius-card 0 0 !important;
         border-bottom: 3px solid transparent;
-        border-radius: 0;
-        transition: color 0.15s $ease, border-color 0.15s $ease;
+        background-color: $surface-darker-purple;
 
+        &:active,
         &:hover,
         &:focus {
             color: $brand-primary-deep;
-            border-bottom-color: rgba(58, 24, 103, 0.25);
+            border-bottom-color: $brand-gold;
+            background-color: $surface-tint-darker;
+            transition: all 0.15s $ease;
         }
 
         &.active {
-            color: $brand-primary-deep;
-            font-weight: 700;
-            background: transparent;
-            border-bottom-color: $brand-gold;
+
+            background-color: $surface-tint;
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: $brand-primary-deep;
+                border-bottom-color: $brand-gold;
+                background-color: $surface-tint-darker !important;
+                transition: all 0.15s $ease;
+            }
         }
     }
 }
@@ -1059,10 +1083,21 @@ label,
     }
 }
 
+.path-grade tbody tr.userrow.even:hover,
+.path-grade tbody tr.userrow.odd:hover {
+    background-color: $gradebook-surface-hover !important;
+
+    th,
+    td {
+        background-color: inherit !important;
+    }
+}
+
 .path-grade-report-singleview div.reporttable {
     background-color: $body-bg;
 }
 
+.path-grade-edit-tree .gradetree-wrapper .setup-grades.generaltable tr th,
 .path-grade-report-user .user-grade thead th,
 .grade-report-user .user-grade thead th {
     background-color: $brand-primary;
@@ -1141,6 +1176,18 @@ label,
 .generaltable tbody tr:hover,
 .table tbody tr:hover {
     background: $surface-tint-darker !important;
+}
+
+.table-responsive {
+    display: table;
+}
+
+.icon.text-info {
+    color: $brand-primary !important;
+}
+
+th .icon.text-info {
+    color: $brand-gold !important;
 }
 
 /* --------------------------------------------------------------------------

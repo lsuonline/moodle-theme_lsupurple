@@ -25,10 +25,12 @@ $ink-darkest:   #111111;
 $body-bg:      #ffffff;
 $surface:      #ffffff;
 $surface-darker: #F1EFF4;
-$surface-tint: rgba(58, 24, 103, 0.04);
+$surface-darker-purple: #ebe8f0;
+$surface-tint: rgba(58, 24, 103, 0.08);
+$surface-tint-darker: rgba(58, 24, 103, 0.15);
 
 // Lines.
-$line-soft:   rgba(58, 24, 103, 0.10);
+$line-soft:   rgba(58, 24, 103, 0.15);
 $line-strong: rgba(58, 24, 103, 0.22);
 
 // Shadows: resting, raised, floating.

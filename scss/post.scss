@@ -139,6 +139,10 @@ hr,
     }
 }
 
+.bg-light {
+    background-color: $surface-darker !important;
+}
+
 /* --------------------------------------------------------------------------
    HEADER — purple gradient with a gold keyline.
    -------------------------------------------------------------------------- */
@@ -259,6 +263,20 @@ hr,
         &:active,
         &:hover {
             background-color: rgba(255, 255, 255, 0.25) !important;
+        }
+    }
+}
+
+.filters-dropdown.show {
+    background: $body-bg;
+    box-shadow: $shadow-float;
+
+    .dropdown-item {
+        color: $brand-primary !important;
+
+        &:active,
+        &:hover {
+            background-color: $surface-darker-purple !important;
         }
     }
 }
@@ -726,6 +744,23 @@ hr,
     display: none;
 }
 
+.action-menu .dropdown-subpanel.content-displayed {
+    background-color: $brand-primary;
+}
+
+// This hides the "Move Right" and "Move left" menu items from the triple dots.
+.action-menu .dropdown-item.editing_moveright,
+.action-menu .dropdown-item.editing_moveleft {
+    display: none;
+}
+
+.editing .activity-item:hover:not(:has(.activity:hover)),
+.editing .activity-item.selected {
+    // outline: none;
+    outline-color: $brand-gold;
+    outline-offset: -3px;
+}
+
 /* --------------------------------------------------------------------------
    ACTIVITY ROWS
    -------------------------------------------------------------------------- */
@@ -999,43 +1034,113 @@ label,
 }
 
 /* --------------------------------------------------------------------------
+   GRADES.
+   -------------------------------------------------------------------------- */
+
+.path-grade-report-grader .gradeparent .sorticon {
+    margin: 0 0.25em;
+}
+
+.path-grade-report-grader .gradeparent .heading .cell,
+.path-grade-report-grader .gradeparent .cell.category,
+.path-grade-report-grader .gradeparent .avg .cell {
+    background-color: $surface-darker-purple;
+}
+
+#forecast-form tbody tr:hover,
+.path-grade-report-user .user-grade tbody tr:hover,
+.grade-report-singleview .reporttable tbody tr:hover,
+.path-grade-report-singleview .reporttable tbody tr:hover {
+    background-color: $surface-tint-darker;
+
+    th,
+    td {
+        background-color: $surface-tint-darker !important;
+    }
+}
+
+.path-grade-report-singleview div.reporttable {
+    background-color: $body-bg;
+}
+
+.path-grade-report-user .user-grade thead th,
+.grade-report-user .user-grade thead th {
+    background-color: $brand-primary;
+    color: $surface;
+}
+
+.path-grade-report-user .user-report-container,
+.grade-report-user .user-report-container {
+    background-color: $body-bg;
+}
+
+/* --------------------------------------------------------------------------
    TABLES — purple header with a gold rule beneath it.
    -------------------------------------------------------------------------- */
 
 .generaltable,
 .table {
-    background: $surface;
+    background: $body-bg;
     border-radius: $radius-item;
     overflow: hidden;
     box-shadow: $shadow-rest;
+
+    th,
+    td {
+        border-right: 0;
+        border-left: 0;
+        border-top: 1px solid $line-soft !important;
+        border-bottom: 1px solid $line-soft !important;
+        vertical-align: middle;
+    }
+
+    thead td,
+    thead td,
+    thead th,
+    thead th {
+        background: $brand-primary;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        border-color: $brand-primary-dark !important;
+        border-bottom: 2px solid $brand-gold !important;
+
+        a {
+            display: inline-flex;
+            color: #ffffff;
+        }
+
+        i.icon {
+            margin: 0 0.25em;
+        }
+    }
+
+    tr {
+        border-left: 1px solid $line-soft !important;
+        border-right: 1px solid $line-soft !important;
+        padding-top: 0.25em;
+        padding-bottom: 0.25em;
+    }
 }
 
-.generaltable th,
-.generaltable td,
-.table th,
-.table td {
-    border-color: $line-soft !important;
-    vertical-align: middle;
+.generaltable tbody tr:nth-of-type(even),
+.gradereport-grader-table tbody tr.userrow.even {
+    background-color: $surface-darker !important;
+
+    .cell, .floater .cell {
+        background-color: inherit !important;
+    }
 }
 
-.generaltable thead th,
-.table thead th {
-    background: $brand-primary;
-    color: #ffffff;
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    border-color: $brand-primary-dark !important;
-    border-bottom: 2px solid $brand-gold !important;
-}
-
-.generaltable tbody tr:nth-of-type(even) {
-    background: $surface-tint;
+.generaltable tbody tr:nth-of-type(odd)
+.gradereport-grader-table tbody tr.userrow.odd {
+    background: $body-bg !important;
 }
 
 .generaltable tbody tr:hover,
 .table tbody tr:hover {
-    background: rgba(58, 24, 103, 0.06);
+    background: $surface-tint-darker !important;
 }
 
 /* --------------------------------------------------------------------------

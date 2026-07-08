@@ -16,7 +16,7 @@
 
 /**
  *
- * Version details for the LSU Purple child theme.
+ * Primary navigation for the LSU Purple child theme.
  *
  * @package    theme_lsupurple
  * @copyright  2026 onwards Louisiana State University
@@ -24,13 +24,31 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace theme_lsupurple\output;
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2026070800;
-$plugin->requires = 2024100700;
-$plugin->component = 'theme_lsupurple';
-$plugin->maturity = MATURITY_BETA;
-$plugin->release = '0.5.0-Beligerant_Bongo';
-$plugin->dependencies = [
-    'theme_boost' => 2024100700,
-];
+/*
+ * Extends the core primary navigation.
+*/
+class primary extends \core\navigation\output\primary {
+
+    // Flags the custom menu nodes before merging back to core.
+    protected function merge_primary_and_custom(array $primary, array $custom, bool $expandedmenu = false): array {
+        if (!$expandedmenu) {
+            foreach ($custom as $node) {
+                $this->force_node_into_moremenu($node);
+            }
+        }
+        return parent::merge_primary_and_custom($primary, $custom, $expandedmenu);
+    }
+
+    // Sets the forceintomoremenu flag on a custom menu node.
+    protected function force_node_into_moremenu(object $node): void {
+        $node->forceintomoremenu = true;
+
+        foreach ($node->children ?? [] as $child) {
+            $this->force_node_into_moremenu($child);
+        }
+    }
+}

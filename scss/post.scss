@@ -71,13 +71,13 @@ body {
 }
 
 a {
-    color: $brand-primary-deep;
-    text-decoration-color: rgba(58, 24, 103, 0.35);
+    color: $brand-primary-dark;
+    text-decoration-color: $brand-primary;
     text-underline-offset: 2px;
 
     &:hover,
     &:focus {
-        color: $brand-primary-dark;
+        color: $brand-primary-deep;
         text-decoration-color: $brand-gold-dark;
     }
 }
@@ -129,8 +129,8 @@ hr,
 
 // Gold keyboard focus ring, site wide.
 :focus-visible {
-    outline: none;//2px solid $brand-gold-dark !important;
-    outline-offset: 0;//2px;
+    outline: none;
+    outline-offset: 0;
     border-radius: 4px;
 }
 
@@ -260,6 +260,8 @@ hr,
     }
 
     a {
+        text-decoration: unset;
+
         &:active,
         &:focus,
         &:hover {
@@ -378,6 +380,16 @@ hr,
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
+
+    .generalbox a,
+    .section a {
+        text-decoration: underline;
+        font-weight: 700;
+
+        &:hover {
+            text-decoration-color: $brand-gold-dark;
+        }
+    }
 }
 
 .drawer-toggles,
@@ -448,6 +460,7 @@ hr,
 }
 
 .courseindex .courseindex-section-title .courseindex-link {
+    text-decoration: unset;
     color: $brand-primary;
     font-weight: 700;
     font-size: 0.85rem;
@@ -456,6 +469,10 @@ hr,
 .courseindex .courseindex-section-title .courseindex-chevron,
 .courseindex .courseindex-section-title .icons-collapse-expand {
     color: $brand-primary-deep;
+}
+
+.btn.btn-icon.icons-collapse-expand {
+    text-decoration: unset !important;
 }
 
 // Activities nest inside the section card.
@@ -730,6 +747,10 @@ hr,
     margin: 0 !important;
     padding: 0 0 0 1rem !important;
     border: none !important;
+
+    a {
+        text-decoration: unset !important;
+    }
 }
 
 .sectionname::before,
@@ -742,6 +763,11 @@ hr,
     width: 4px;
     border-radius: 999px;
     background: linear-gradient(180deg, $brand-gold 0%, $brand-gold-dark 100%);
+    text-decoration: unset !important;
+
+    a {
+        text-decoration: unset !important;
+    }
 }
 
 .sectionname a {
@@ -771,7 +797,6 @@ hr,
 
 .editing .activity-item:hover:not(:has(.activity:hover)),
 .editing .activity-item.selected {
-    // outline: none;
     outline-color: $brand-gold;
     outline-offset: -3px;
 }

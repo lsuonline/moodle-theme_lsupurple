@@ -199,7 +199,6 @@ hr,
 .navbar .popover-region-toggle,
 .navbar .editingmode,
 .navbar .editmode-switch-form label {
-    color: rgba(255, 255, 255, 0.90) !important;
     cursor: pointer;
     border-radius: $radius-control;
     transition: background-color 0.15s $ease, color 0.15s $ease;
@@ -211,6 +210,10 @@ hr,
         border-color: transparent !important;
         text-decoration: none !important;
     }
+}
+
+.navbar.fixed-top a.nav-link {
+    color: rgba(255, 255, 255, 0.90) !important;
 }
 
 .navbar .btn:hover,

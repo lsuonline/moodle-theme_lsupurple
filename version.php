@@ -30,7 +30,7 @@ $plugin->version = 2026070800;
 $plugin->requires = 2024100700;
 $plugin->component = 'theme_lsupurple';
 $plugin->maturity = MATURITY_BETA;
-$plugin->release = '0.5.0-Beligerant_Bongo';
+$plugin->release = '0.5.0-Belligerent_Bongo';
 $plugin->dependencies = [
     'theme_boost' => 2024100700,
 ];

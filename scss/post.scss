@@ -214,6 +214,11 @@ hr,
 
 .navbar.fixed-top a.nav-link {
     color: rgba(255, 255, 255, 0.90) !important;
+
+    &:hover {
+        border-radius: $radius-control $radius-control 0 0 !important;
+        border-bottom-color: $brand-primary-super !important;
+    }
 }
 
 .navbar .btn:hover,
@@ -244,7 +249,8 @@ hr,
     font-weight: 700;
 }
 
-.navbar .dropdown-menu {//:not(:has(.dropdown-menu-left.show)) {
+
+.navbar .dropdownmoremenu .dropdown-menu {
     background: $surface;
     border: 1px solid $line-soft;
     border-radius: $radius-item;
@@ -252,13 +258,14 @@ hr,
     overflow: hidden;
 
     .dropdown-item {
+        background-color: $surface !important;
         color: $ink-body;
 
         &:active,
         &:focus,
         &:hover {
             color: $brand-primary-dark !important;
-            background-color: rgba(58, 24, 103, 0.2) !important;
+            background-color: $surface-darker-purple !important;
         }
     }
 
@@ -269,9 +276,13 @@ hr,
         &:focus,
         &:hover {
             color: $brand-primary-dark !important;
-            background-color: rgba(58, 24, 103, 0.2) !important;
+            background-color: $surface-darker-purple !important;
         }
     }
+}
+
+.usermenu .dropdown.show {
+
 }
 
 .dropdown-menu-right.show {
@@ -320,7 +331,6 @@ hr,
 .navbar-toggler {
   background-color: $surface-darker !important;
 }
-
 
 /* --------------------------------------------------------------------------
    EDIT MODE TOGGLE — gold when on.

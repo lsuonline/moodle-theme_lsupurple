@@ -332,6 +332,10 @@ hr,
   background-color: $surface-darker !important;
 }
 
+.navbar.fixed-top.navbar-light.bg-white.navbar-expand {
+    background-color: $brand-primary-deep !important;
+}
+
 /* --------------------------------------------------------------------------
    EDIT MODE TOGGLE — gold when on.
    -------------------------------------------------------------------------- */
@@ -1348,6 +1352,19 @@ th .icon.text-info {
     &:hover {
         border-radius: $radius-control !important;
     }
+}
+
+/* --------------------------------------------------------------------------
+   SEARCH STUFF
+   -------------------------------------------------------------------------- */
+
+.simplesearchform .collapse.show,
+.simplesearchform .collapsing {
+    background-color: transparent;
+}
+
+.simplesearchform .collapse.show .btn-submit {
+   background-color: $surface-tint-lighter; 
 }
 
 .notloggedin .usermenu .login a {

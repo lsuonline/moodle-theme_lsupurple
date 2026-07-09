@@ -65,7 +65,9 @@ body,
 }
 
 body {
-    font-size: 0.9625rem;
+    // font-size: 0.9625rem;
+    font-size: 1.125rem;
+    // line-height: 1.6;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
@@ -631,6 +633,7 @@ hr,
     letter-spacing: 0.06em;
     border-bottom: 1px solid $line-soft;
     padding-bottom: 0.6rem;
+    padding-left: 1rem;
 }
 
 .dashboard-card:hover {
@@ -1106,6 +1109,14 @@ label,
 .col-form-label {
     color: $ink-heading;
     font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   PARTICIPANTS.
+   -------------------------------------------------------------------------- */
+
+.path-user #participants a {
+    text-decoration: none !important;
 }
 
 /* --------------------------------------------------------------------------

@@ -40,6 +40,10 @@
   max-width: none !important;
 }
 
+.secondary-navigation .navigation .nav-tabs {
+  max-width: none;
+}
+
 /* --------------------------------------------------------------------------
    GLOBAL
    -------------------------------------------------------------------------- */
@@ -1009,6 +1013,11 @@ hr,
 .secondary-navigation nav.navigation {
     background-color: $surface-darker-purple;
     border-radius: $radius-card;
+    padding-left: 0 !important;
+    margin: 0 0.9rem;
+}
+
+.secondary-navigation .navigation {
 }
 
 .nav-tabs {

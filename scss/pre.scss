@@ -6,30 +6,65 @@
    The Source Sans 3 font is loaded as a head link tag by hook_callbacks.php.
    ========================================================================== */
 
-// Brand.
-$brand-lightest:      #ebe8f0;
-$brand-primary:       #59447a;
-$brand-primary-dark:  #3a1867;
-$brand-primary-deep:  #2a1149;
-$brand-primary-super: #11071f;
-$brand-gold:          #FDD023;
-$brand-gold-dark:     #e3b400;
+// LSU Online Design System Colors
+$color-purple-100: #F7F1FF;
+$color-purple-200: #BFA0E9;
+$color-purple-300: #9C7DC5;
+$color-purple-400: #683DA0;
+$color-purple:     #461D7C;
+$color-purple-700: #271145;
+$color-purple-800: #11071f;
 
-// Ink scale.
-$ink-heading: #271742;
-$ink-body:    #332a40;
-$ink-muted:   #6f6880;
-$ink-darkest:   #111111;
+
+$color-gold-100: #F9F8F0;
+$color-gold-200: #F1EDDB;
+$color-gold-300: #FEE277;
+$color-gold:     #FDD023;
+$color-gold-700: #EEBD02;
+$color-gold-800: #E5B800;
+
+$color-white:    #FFFFFF;
+$color-gray-100: #F5F5F5;
+$color-gray-300: #D6D6D6;
+$color-gray:     #666666;
+$color-gray-900: #616161;
+$color-black:    #000000;
+
+$color-green:     #59B161;
+$color-green-100: #C7E5CA;
+$color-pink:      #B7309E;
+$color-pink-100:  #EEC0E6;
+
+// Brand variables mapped to Design System Colors
+$brand-lightest:      $color-purple-100;
+$brand-lighter:       $color-purple-200;
+$brand-light:         $color-purple-300;
+$brand-primary:       $color-purple-400;
+$brand-primary-dark:  $color-purple;
+$brand-primary-deep:  $color-purple-700;
+$brand-primary-super: $color-purple-800;
+
+$brand-gold-lightest: $color-gold-100;
+$brand-gold-light:    $color-gold-200;
+$brand-gold:          $color-gold;
+$brand-gold-dark:     $color-gold-700;
+$brand-gold-darker:   $color-gold-800;
+
+// Ink scale mapped to Design System Colors
+$ink-heading: $color-black;
+$ink-body:    $color-gray-900;
+$ink-muted:   $color-gray;
+$ink-darkest: $color-black;
 
 // Surfaces.
-$body-bg:      #ffffff;
-$surface:      #ffffff;
-$surface-darker: #F1EFF4;
-$surface-darker-purple: #ebe8f0;
+$body-bg:      $color-white;
+$surface:      $color-white;
+$surface-darker: $color-purple-100;
+$surface-darker-purple: $color-purple-200;
 $surface-tint: rgba(58, 24, 103, 0.08);
 $surface-tint-darker: rgba(58, 24, 103, 0.15);
 $surface-tint-lighter: rgba(255, 255, 255, 0.15);
-$gradebook-surface-hover: #d8d1e1;
+$gradebook-surface-hover: $color-purple-100;
 
 // Lines.
 $line-soft:   rgba(58, 24, 103, 0.15);
@@ -43,7 +78,7 @@ $shadow-float: 0 4px 8px rgba(30, 12, 54, 0.07), 0 16px 40px rgba(58, 24, 103, 0
 // Radii.
 $radius-card:    14px;
 $radius-item:    10px;
-$radius-control: 8px;
+$radius-control: 4px;
 
 // Motion.
 $ease: cubic-bezier(0.2, 0.6, 0.2, 1);
@@ -58,9 +93,9 @@ $ease: cubic-bezier(0.2, 0.6, 0.2, 1);
 $primary: $brand-primary;
 $link-color: $brand-primary;
 $link-hover-color: $brand-primary-dark;
-$border-radius: 8px;
+$border-radius: 4px;
 $border-radius-lg: 10px;
-$font-size-base: 0.9625rem;
+$font-size-base: 1rem; // 16px based on typography body-default
 
 // Dark mode tokens. Applied when the body carries the lsudark class.
 $dark-bg:          #141020;
@@ -79,4 +114,4 @@ $dark-tint:        rgba(192, 166, 240, 0.07);
    FONT BRIDGE
    -------------------------------------------------------------------------- */
 
-$font-family-sans-serif: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-family-sans-serif: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;

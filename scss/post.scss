@@ -69,36 +69,43 @@ body,
 }
 
 body {
-    // font-size: 0.9625rem;
-    font-size: 1.125rem;
-    // line-height: 1.6;
-    line-height: 1.6;
+    font-size: 1rem; // Base 16px to match typography-body-default
+    line-height: 1.8;
     -webkit-font-smoothing: antialiased;
 }
 
 a {
-    color: $brand-primary-dark;
-    text-decoration-color: $brand-primary;
+    color: $brand-primary;
+    text-decoration-color: transparent;
     text-underline-offset: 2px;
+    font-weight: 600;
 
     &:hover,
     &:focus {
-        color: $brand-primary-deep;
-        text-decoration-color: $brand-gold-dark;
+        color: $brand-primary-dark;
+        text-decoration-color: $brand-primary-dark;
     }
 }
 
-h1, h2, h3, h4,
+h1, h2, h3, h4, h5, h6,
 .page-context-header .page-header-headings h1 {
     color: $ink-heading;
-    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
     letter-spacing: -0.015em;
+    line-height: 1.2;
 }
 
 h1,
 .page-context-header .page-header-headings h1 {
-    color: $brand-primary-deep;
-    font-size: 1.85rem;
+    font-size: 2.5rem; // ~40px Mobile (from typography-headline-md/lg fallback)
+}
+
+@media (min-width: 1024px) {
+    h1,
+    .page-context-header .page-header-headings h1 {
+        font-size: 3.5rem; // ~56px Desktop (from typography-headline-lg)
+    }
 }
 
 hr,
@@ -271,7 +278,7 @@ hr,
         &:focus,
         &:hover {
             color: $brand-primary-dark !important;
-            background-color: $surface-darker-purple !important;
+            background-color: $color-gray-100 !important;
         }
     }
 
@@ -281,8 +288,8 @@ hr,
         &:active,
         &:focus,
         &:hover {
-            color: $brand-primary-dark !important;
-            background-color: $surface-darker-purple !important;
+            color: $brand-primary-super !important;
+            background-color: $color-gray-100 !important;
         }
     }
 }
@@ -313,7 +320,7 @@ hr,
 
         &:active,
         &:hover {
-            background-color: $surface-darker-purple !important;
+            background-color: $color-gray-100 !important;
         }
     }
 }
@@ -1006,12 +1013,11 @@ hr,
 
 .secondary-navigation {
     background: transparent;
- //   border-bottom: 1px solid $line-soft;
     margin-bottom: 1.5rem;
 }
 
 .secondary-navigation nav.navigation {
-    background-color: $surface-darker-purple;
+    background-color: $color-gray-100;
     border-radius: $radius-card;
     padding-left: 0 !important;
     margin: 0 0.9rem;
@@ -1030,7 +1036,7 @@ hr,
         border: none;
         border-radius: $radius-card $radius-card 0 0 !important;
         border-bottom: 3px solid transparent;
-        background-color: $surface-darker-purple;
+        background-color: $color-gray-100;
 
         &:active,
         &:hover,
@@ -1063,38 +1069,55 @@ hr,
 
 .btn {
     border-radius: $radius-control;
-    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
     transition: background-color 0.15s $ease, box-shadow 0.15s $ease, transform 0.15s $ease;
+    //padding: 6px 32px;
 }
 
 .btn-primary {
-    background: linear-gradient(180deg, $brand-primary 0%, $brand-primary-dark 100%);
-    border-color: $brand-primary-dark;
-    box-shadow: 0 2px 6px rgba(58, 24, 103, 0.25);
+    background-color: $color-purple;
+    background-image: none;
+    border-color: $color-purple;
+    color: $color-white;
+    box-shadow: none;
 
     &:hover,
     &:focus,
     &:active {
-        background: $brand-primary-dark;
-        border-color: $brand-primary-deep;
-        box-shadow: 0 4px 12px rgba(58, 24, 103, 0.30);
+        background-color: $color-purple-400;
+        border-color: $color-purple-400;
+        color: $color-white;
+        box-shadow: none;
         transform: translateY(-1px);
     }
 }
 
 .btn-outline-primary {
-    color: $brand-primary-deep;
-    border-color: $line-strong;
+    color: $color-purple;
+    border-color: $color-purple;
 
     &:hover,
     &:focus {
-        background: $brand-primary;
-        border-color: $brand-primary-deep;
-        color: #ffffff;
+        background: $color-purple;
+        border-color: $color-purple;
+        color: $color-white;
     }
 }
 
 .btn-secondary {
+    background-color: $color-gold;
+    border-color: $color-gold;
+    color: $color-black;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: $color-gold-700;
+        border-color: $color-gold-700;
+        color: $color-black;
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -1105,11 +1128,12 @@ hr,
 .custom-select {
     border-radius: $radius-control;
     border-color: $line-strong;
+    min-height: 48px;
     transition: border-color 0.15s $ease, box-shadow 0.15s $ease;
 
     &:focus {
         border-color: $brand-primary-deep;
-        box-shadow: 0 0 0 0.2rem rgba(58, 24, 103, 0.12);
+        box-shadow: 0 0 0 2px $body-bg, 0 0 0 4px $brand-primary-deep;
     }
 }
 
@@ -1138,7 +1162,7 @@ label,
 .path-grade-report-grader .gradeparent .heading .cell,
 .path-grade-report-grader .gradeparent .cell.category,
 .path-grade-report-grader .gradeparent .avg .cell {
-    background-color: $surface-darker-purple;
+    background-color: $color-gray-100;
 }
 
 #forecast-form tbody tr:hover,
@@ -1188,14 +1212,15 @@ label,
     background: $body-bg;
     border-radius: $radius-item;
     overflow: hidden;
-    box-shadow: $shadow-rest;
+    box-shadow: none;
+    border: 1px solid $color-gray-100;
 
     th,
     td {
         border-right: 0;
         border-left: 0;
-        border-top: 1px solid $line-soft !important;
-        border-bottom: 1px solid $line-soft !important;
+        border-top: 1px solid $color-gray-100 !important;
+        border-bottom: 1px solid $color-gray-100 !important;
         vertical-align: middle;
     }
 
@@ -1203,13 +1228,12 @@ label,
     thead td,
     thead th,
     thead th {
-        background: $brand-primary;
-        color: #ffffff;
-        font-weight: 600;
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        border-color: $brand-primary-dark !important;
-        border-bottom: 2px solid $brand-gold !important;
+        background: $color-purple;
+        color: $color-white;
+        font-weight: 700;
+        font-size: 1rem;
+        border-color: $color-purple !important;
+        border-bottom: none !important;
 
         a {
             display: inline-flex;
@@ -1231,7 +1255,7 @@ label,
 
 .generaltable tbody tr:nth-of-type(even),
 .gradereport-grader-table tbody tr.userrow.even {
-    background-color: $surface-darker !important;
+    background-color: $brand-gold-lightest !important;
 
     .cell, .floater .cell {
         background-color: inherit !important;
